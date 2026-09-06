@@ -5,6 +5,9 @@
 | Field | Value |
 | --- | --- |
 | Title | A Level-15 Certificate for the Prime-29 Gate in the Fifteen-Runner Lonely Runner Problem |
+| Author | Ruturaj R Raval |
+| Affiliation | Independent Researcher |
+| ORCID | [0000-0003-4930-8981](https://orcid.org/0000-0003-4930-8981) |
 | Tagged release | [`v0.1.1`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.1) |
 | Release date | 2026-09-06 |
 | Audited release commit | `bfc58364d975a862153307766386b51fe8289e57` |

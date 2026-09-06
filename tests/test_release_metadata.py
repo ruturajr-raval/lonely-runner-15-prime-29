@@ -154,6 +154,7 @@ class ReleaseMetadataTests(unittest.TestCase):
             path = root / ".release-record.json"
             metadata = json.loads(path.read_text(encoding="utf-8"))
             metadata["version_doi"] = "10.5281/zenodo.99999999"
+            metadata["release_commit"] = None
             path.write_text(
                 json.dumps(metadata, indent=2) + "\n",
                 encoding="utf-8",
@@ -161,6 +162,24 @@ class ReleaseMetadataTests(unittest.TestCase):
             completed = self.run_checker(root)
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn("invalid release_commit", completed.stderr)
+
+    def test_missing_version_doi_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.copy_metadata(root)
+            path = root / "CITATION.cff"
+            text = path.read_text(encoding="utf-8")
+            path.write_text(
+                text.replace(
+                    "10.5281/zenodo.22541517",
+                    "10.5281/zenodo.00000000",
+                    1,
+                ),
+                encoding="utf-8",
+            )
+            completed = self.run_checker(root)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("CITATION.cff: expected at least", completed.stderr)
 
     def test_archival_file_count_requires_exact_labeled_line(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
@@ -201,15 +220,23 @@ class ReleaseMetadataTests(unittest.TestCase):
             )
             citation = root / "CITATION.cff"
             citation.write_text(
-                citation.read_text(encoding="utf-8")
-                + f"\n# {version_doi}\n# {version_doi}\n",
+                citation.read_text(encoding="utf-8").replace(
+                    "10.5281/zenodo.22541517",
+                    version_doi,
+                ),
                 encoding="utf-8",
             )
-            for relative in ("README.md", "paper/ARXIV_METADATA.md"):
+            for relative in (
+                "README.md",
+                "PUBLICATION.md",
+                "paper/ARXIV_METADATA.md",
+            ):
                 path = root / relative
                 path.write_text(
-                    path.read_text(encoding="utf-8")
-                    + f"\n{version_doi}\n",
+                    path.read_text(encoding="utf-8").replace(
+                        "10.5281/zenodo.22541517",
+                        version_doi,
+                    ),
                     encoding="utf-8",
                 )
             publication = root / "PUBLICATION.md"

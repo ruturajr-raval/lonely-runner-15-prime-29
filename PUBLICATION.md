@@ -74,21 +74,22 @@ shasum -a 256 -c SHA256SUMS
   `https://github.com/ruturajr-raval/lonely-runner-15-prime-29`
 - GitHub release:
   `https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.1`
+- Version DOI: `10.5281/zenodo.22541517`
 - Stable concept DOI: `10.5281/zenodo.22539841`
+- Release commit: `bfc58364d975a862153307766386b51fe8289e57`
 
 Release assets:
 
-```text
-lonely-runner-15-prime-29-paper.pdf
-lonely-runner-15-prime-29-source.tar.gz
-lonely-runner-15-prime-29-certificate-v1.tar.gz
-SHA256SUMS
-```
+- `lonely-runner-15-prime-29-paper.pdf`: `57e727d9699db7b154591d0e132e0b7cd449241b1381396a98d62ae2025dc37b`
+- `lonely-runner-15-prime-29-source.tar.gz`: `df671d1a94d3c22481d8fc103e14b768f84a533c24178925b69e445264b8bda5`
+- `lonely-runner-15-prime-29-certificate-v1.tar.gz`: `bc52d11ced8082405fa2a428a0fb605b7c0aefa7cfaa013f104fddaa86777c39`
+- `SHA256SUMS`: `1e2343e5b22e22bc404b0e1ffe25563a0cfc81827f2b16790ca70ee0f7582d1d`
 
-The release manifest records exact asset hashes. Zenodo assigns the version
-DOI after the GitHub release is archived. The maintained `main` branch records
-the DOI, release commit, asset hashes, archive filename, archive hash, and
-archive file count after deposit verification.
+- Zenodo archive: `ruturajr-raval/lonely-runner-15-prime-29-v0.1.1.zip`
+- Zenodo archive SHA-256: `8e9a463dd95acb8a40f927583230bc8140e6139b479fd59059d98a27adebcd72`
+- Archived file count: `110`
+
+All 110 archived files match the immutable `v0.1.1` tag tree byte for byte.
 
 ## What Is Not Claimed
 
@@ -120,5 +121,5 @@ fifteen-runner gates.
 
 ## Citation
 
-Citation metadata is in `CITATION.cff`. Cite release `v0.1.1`; its version DOI
-is recorded on `main` after archival.
+Citation metadata is in `CITATION.cff`. Cite release `v0.1.1` using version
+DOI `10.5281/zenodo.22541517`.

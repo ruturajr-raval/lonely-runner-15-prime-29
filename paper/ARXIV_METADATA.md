@@ -57,10 +57,9 @@ arXiv.org perpetual, non-exclusive license
 
 ## DOI
 
-Stable concept DOI: 10.5281/zenodo.22539841
+Version DOI: 10.5281/zenodo.22541517
 
-The maintained `main`-branch copy records the `v0.1.1` version DOI after
-archival.
+Stable concept DOI: 10.5281/zenodo.22539841
 
 ## Source Package
 

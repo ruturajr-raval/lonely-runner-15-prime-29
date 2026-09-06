@@ -1,0 +1,12 @@
+* text=auto
+*.cpp text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.py text eol=lf
+*.rs text eol=lf
+*.tex text eol=lf
+*.yml text eol=lf
+*.bundle -text
+*.drat -text
+*.pdf -text
+results/p29-level15-certificate-v1/**/*.log -whitespace

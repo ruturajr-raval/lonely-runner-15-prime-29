@@ -1,0 +1,17 @@
+c mode: RAT
+c formula-parsing time (s):                     0.000
+c binary proof mode
+c proof-parsing time (s):                       0.004
+c preprocessing time (s):                       0.000
+c verification time (s):                        0.025
+c premise clauses:                               1842
+c proof steps:                                  15748
+c RUP introductions:                             5439
+c RAT introductions:                              156
+c deletions:                                     7572
+c skipped deletions:                               22
+c reason deletions:                                11
+c reason deletions shrinking trail:                 0
+c total time (s):                               0.035
+c memory (MB):                                      1
+s VERIFIED

@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+build/
+dist/
+results/*.json
+results/**/*.cnf
+results/**/*.drat
+results/**/*.log
+results/**/*.json
+!results/.gitkeep
+!results/p29-level15-certificate-v1/
+!results/p29-level15-certificate-v1/**

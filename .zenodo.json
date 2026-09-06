@@ -1,0 +1,23 @@
+{
+  "title": "A Level-15 Certificate for the Prime-29 Gate in the Fifteen-Runner Lonely Runner Problem",
+  "upload_type": "software",
+  "description": "Technical report, exact certificate data, and verification software proving J(14,29) is empty. The unique level-one improper orbit is reduced at level 15 to coprime and noncoprime symmetry branches. Two independently written exact solvers exclude all thirteen coprime coordinate-zero cases. A 210-variable, 1,842-clause CNF and a DRAT proof accepted by DRAT-trim and rate exclude the noncoprime branch. The result closes the prime-29 finite-checking gate for fifteen total runners. It contributes log(29) to the required prime mass and does not prove the full fifteen-runner Lonely Runner Conjecture.",
+  "creators": [
+    {
+      "name": "Raval, Ruturaj R",
+      "affiliation": "Independent Researcher",
+      "orcid": "0000-0003-4930-8981"
+    }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "lonely runner conjecture",
+    "Diophantine approximation",
+    "computational number theory",
+    "computer-assisted proof",
+    "SAT solving",
+    "DRAT",
+    "reproducible research"
+  ],
+  "version": "0.1.0"
+}

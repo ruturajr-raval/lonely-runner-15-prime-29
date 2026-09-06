@@ -1,0 +1,275 @@
+{
+  "artifacts": {
+    "coprime/cpp/logs/zero-c02.log": {
+      "bytes": 191,
+      "sha256": "f05875dbb9a67a741e097db59ce8d2203222c0e97743b887c17f0745ed81e463"
+    },
+    "coprime/cpp/logs/zero-c03.log": {
+      "bytes": 177,
+      "sha256": "c3ecc2522a9c65778c37ca4ed2957655fbc144657f74896667567e56fca89572"
+    },
+    "coprime/cpp/logs/zero-c04.log": {
+      "bytes": 177,
+      "sha256": "d7ec31c94e5385b6a357b9355e539849eec0d020d281d6c84e85c6b85003e004"
+    },
+    "coprime/cpp/logs/zero-c05.log": {
+      "bytes": 177,
+      "sha256": "66978ea720d4655076e0d8c388651b6a3e7d2e9aeb049433da2305c9b5817669"
+    },
+    "coprime/cpp/logs/zero-c06.log": {
+      "bytes": 177,
+      "sha256": "57000949d1d501241cdaecace917295077e30810feff64ae0cea4ddef8f729c8"
+    },
+    "coprime/cpp/logs/zero-c07.log": {
+      "bytes": 177,
+      "sha256": "56941d08db7c91cdcec1e1d1c9e493cdff72222a2ddf5019c7dcff5ddbe81265"
+    },
+    "coprime/cpp/logs/zero-c08.log": {
+      "bytes": 177,
+      "sha256": "94d53336b18ce16c2575e7396a27d9bf261eeb66f700ef8392d7d306abc52f1a"
+    },
+    "coprime/cpp/logs/zero-c09.log": {
+      "bytes": 177,
+      "sha256": "40e204b3f67525133904235717d12d74cfe4317d8be92044afd78d17d2b63b57"
+    },
+    "coprime/cpp/logs/zero-c10.log": {
+      "bytes": 165,
+      "sha256": "b8f14b89bfe1cf99e3e31ce9dde5647b4a0831e8514a85b81d89700fa504af54"
+    },
+    "coprime/cpp/logs/zero-c11.log": {
+      "bytes": 179,
+      "sha256": "df2291ed590d2113dea253f52df608a8fdda16a140d2b8acd157b65c656a5099"
+    },
+    "coprime/cpp/logs/zero-c12.log": {
+      "bytes": 179,
+      "sha256": "9895467109bf8afda9f0aaf5856beb6046de640bf49fddaf1ee2f6a27f51ab55"
+    },
+    "coprime/cpp/logs/zero-c13.log": {
+      "bytes": 165,
+      "sha256": "7233f7721ebd1d06d13346baebd8613ae0fc65ba95bc3be558ebdf3092b1fcff"
+    },
+    "coprime/cpp/logs/zero-c14.log": {
+      "bytes": 179,
+      "sha256": "c95114ccc5f37b33ed588ebcb19360c09e1002d508a2c1633801c5e252d3d693"
+    },
+    "coprime/cpp/provenance/Makefile": {
+      "bytes": 500,
+      "sha256": "76d715c8dc9364c5c7274c6d573827df87a56f5690891d55af04ab35ccb9f792"
+    },
+    "coprime/cpp/provenance/run_p29_zero_cases.py": {
+      "bytes": 8670,
+      "sha256": "4e8b727cf3b85d823906c9cb4ef26392cbdedd72ee1311986e2a989d29a92de2"
+    },
+    "coprime/cpp/provenance/solve_p29_level15.cpp": {
+      "bytes": 19482,
+      "sha256": "f957f8db6bca664733ad987ab25d389db70f50df03829b4a03974ddc914855b1"
+    },
+    "coprime/cpp/summary.json": {
+      "bytes": 6070,
+      "sha256": "8b1e6a9a87f7c1ed0a3498c669c9ddcd028512dc839d6c29ae91c0aecb311acc"
+    },
+    "coprime/dual-verification.json": {
+      "bytes": 862,
+      "sha256": "e325d47aaee565aca207bb6ca1eba6c8d62a3dbb5162803ccfeb1a41485209fc"
+    },
+    "coprime/rust/logs/zero-c02.log": {
+      "bytes": 1600,
+      "sha256": "96da4ac62f790e04deaa28851f55bc9d7ef088f825c5bdc95155c27cd805dab1"
+    },
+    "coprime/rust/logs/zero-c03.log": {
+      "bytes": 1713,
+      "sha256": "e2c36647927af2e336028ef9b11e39759ada27e925d1c9a67819175e6256ddcb"
+    },
+    "coprime/rust/logs/zero-c04.log": {
+      "bytes": 1665,
+      "sha256": "f81cd8c842dafaf91753f7f12adfde112c489441436c967f2e0833b9484a4999"
+    },
+    "coprime/rust/logs/zero-c05.log": {
+      "bytes": 1889,
+      "sha256": "7c8640484e9ea8115b4c6bfabb4adbc78d49b0f27a0052de637ce4d34c9d2e9d"
+    },
+    "coprime/rust/logs/zero-c06.log": {
+      "bytes": 1729,
+      "sha256": "27de5022ec36340bfd905ad76e10ff3289ed5093cbbc45f0381647dc2ee35259"
+    },
+    "coprime/rust/logs/zero-c07.log": {
+      "bytes": 1390,
+      "sha256": "fc150f22191d3e1fec5a20bb247d40a4b5db1c8cbd34e208b12c228fc7e91813"
+    },
+    "coprime/rust/logs/zero-c08.log": {
+      "bytes": 1969,
+      "sha256": "905124861d6248d0a419cff04257a776b0374017ea5198d021c90868dc096af7"
+    },
+    "coprime/rust/logs/zero-c09.log": {
+      "bytes": 1617,
+      "sha256": "d4af34931fc4133e1a96a330ad559f57c11a17d54ead031333d87bafb64df3a8"
+    },
+    "coprime/rust/logs/zero-c10.log": {
+      "bytes": 1392,
+      "sha256": "1e3e243fa5ba89fea3fae6d93427bb1788fce8836ea4549131d1f01afd99352f"
+    },
+    "coprime/rust/logs/zero-c11.log": {
+      "bytes": 1572,
+      "sha256": "389671f3faf23bc79ec519a91ed2802b1aa1589a7f079416a5c9d07a4f74f2b0"
+    },
+    "coprime/rust/logs/zero-c12.log": {
+      "bytes": 1635,
+      "sha256": "33fc4af902eb13edcc3b561a6eb578be4e784b59187c3823d1e27452d70ddf96"
+    },
+    "coprime/rust/logs/zero-c13.log": {
+      "bytes": 1362,
+      "sha256": "8d883052f0df763b6ad588ac9f0ef3f34ea7b89e1c8bd8dba06e695354a8915a"
+    },
+    "coprime/rust/logs/zero-c14.log": {
+      "bytes": 1763,
+      "sha256": "707b445e5b5319944ffbb86631fdb3af1b789132c29774e3976c9cc17c034d76"
+    },
+    "coprime/rust/provenance/Makefile": {
+      "bytes": 500,
+      "sha256": "76d715c8dc9364c5c7274c6d573827df87a56f5690891d55af04ab35ccb9f792"
+    },
+    "coprime/rust/provenance/run_p29_zero_cases.py": {
+      "bytes": 8670,
+      "sha256": "4e8b727cf3b85d823906c9cb4ef26392cbdedd72ee1311986e2a989d29a92de2"
+    },
+    "coprime/rust/provenance/verify_p29_level15.rs": {
+      "bytes": 17546,
+      "sha256": "37036b845dda905ad7173b164d9f7b5eb4814fc7665215f84f8c18db0cfa4a9a"
+    },
+    "coprime/rust/summary.json": {
+      "bytes": 6072,
+      "sha256": "1468fc6a77254656fce032bf2ec233931adb61ad16761fc6f35a8a8574bf2db2"
+    },
+    "noncoprime/drat-trim.log": {
+      "bytes": 452,
+      "sha256": "b8b3f96aec02814e47f3ea1fe4b9b5dccda44afb1bcfa30c80a858d8a98a1856"
+    },
+    "noncoprime/proof.drat": {
+      "bytes": 368542,
+      "sha256": "1554d825fa23b8b66813bdb4016768ff3eb1c56eb80c2993ab89093533c9bacd"
+    },
+    "noncoprime/provenance/sources/cnf.py": {
+      "bytes": 7963,
+      "sha256": "04477ff39ff0c2dddfbfeaeb3bee43c0b4674d59f752a5432d8af2cd8a0553df"
+    },
+    "noncoprime/provenance/sources/crt.py": {
+      "bytes": 1718,
+      "sha256": "c0caf82dcb346c05bdaf56732bc2be44f14d6153d45dd0ddae65b87d246a1620"
+    },
+    "noncoprime/provenance/sources/model.py": {
+      "bytes": 4664,
+      "sha256": "4fd5ac64e8f79b0b44346703ad901226af3e54d9bee0c3e46dfffd487d1594e1"
+    },
+    "noncoprime/provenance/sources/p29_certificate.py": {
+      "bytes": 20575,
+      "sha256": "c7234c1282e4bcc56437b27155cd40e43a881973fae21062dc982fb8a79dd808"
+    },
+    "noncoprime/provenance/sources/run_p29_noncoprime_proof.py": {
+      "bytes": 8477,
+      "sha256": "8eb90c9d9ff58f97e84133a9f68c26803da31fa09a1bdf6b548a46f39006ff4f"
+    },
+    "noncoprime/query.cnf": {
+      "bytes": 52466,
+      "sha256": "9869360a6aab0a65861fd98110558b4c2d9d8610c0d45cd72665048d5b9b5fc5"
+    },
+    "noncoprime/rate.log": {
+      "bytes": 799,
+      "sha256": "aea2f3456e10b5bfb4813ab51e1f6f0ceb1fd98e22629ff5deea711ba8214b87"
+    },
+    "noncoprime/solver.log": {
+      "bytes": 6771,
+      "sha256": "43eec7ff911b333fb6016bf2d34c39431135871ee0787661be7137048e8f1ce2"
+    },
+    "noncoprime/summary.json": {
+      "bytes": 3737,
+      "sha256": "937d711941b68c2485ecfbeef264286323a146a325258838df1a659434e4e16d"
+    },
+    "provenance/source-commit.bundle": {
+      "bytes": 61947,
+      "sha256": "22d87518852c6fc28f7dc2af66915032d3b6d70cbb9bdcac0040178f63e9335e"
+    }
+  },
+  "claim_boundary": "closes the prime-29 gate only; does not prove LRC(14)",
+  "conclusion": {
+    "gate_closed": true,
+    "statement": "J(14,29) = empty"
+  },
+  "coprime_branch": {
+    "dual_verification": "coprime/dual-verification.json",
+    "status": "VERIFIED_UNSAT",
+    "summaries": [
+      "coprime/cpp/summary.json",
+      "coprime/rust/summary.json"
+    ],
+    "zero_case_coverage": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ]
+  },
+  "format_version": 1,
+  "level_one": {
+    "orbit_count": 1,
+    "representative": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "rows_sha256": "a8d0f6ffa5961efb0405e27450d85cef2b471d9dcb4d2afc73b5f71c7127ed08"
+  },
+  "noncoprime_branch": {
+    "status": "VERIFIED_UNSAT",
+    "summary": "noncoprime/summary.json",
+    "summary_sha256": "937d711941b68c2485ecfbeef264286323a146a325258838df1a659434e4e16d"
+  },
+  "parameters": {
+    "k": 14,
+    "level": 15,
+    "p": 29,
+    "parent": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ]
+  },
+  "source_bundle": "provenance/source-commit.bundle",
+  "source_commit": "f2f933bf16ab8eb5b081ddca59b18bf6b1b92e9d",
+  "status": "ORIGINAL_RUNS_VERIFIED",
+  "theorem": "the unique level-one improper orbit for k=14, p=29 has no improper level-15 lift",
+  "verification": {
+    "fast_mode": "integrity-and-reconstruction-only",
+    "full_replay_available": true
+  }
+}

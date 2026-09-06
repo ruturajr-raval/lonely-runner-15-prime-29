@@ -1,0 +1,535 @@
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage[
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black,
+  pdftitle={A Level-15 Certificate for the Prime-29 Gate in the Fifteen-Runner Lonely Runner Problem},
+  pdfauthor={Ruturaj R Raval},
+  pdfsubject={Computer-assisted finite checking for the Lonely Runner Conjecture},
+  pdfkeywords={lonely runner conjecture, Diophantine approximation, SAT, DRAT, exact computation}
+]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\distm}[2]{\operatorname{dist}_{#1}(#2)}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Jset}{J(14,29)}
+\setlength{\emergencystretch}{2em}
+
+\title{A Level-15 Certificate for the Prime-29 Gate\\
+in the Fifteen-Runner Lonely Runner Problem}
+\author{%
+  Ruturaj R Raval\\
+  \small Independent Researcher\\
+  \small ORCID:
+  \href{https://orcid.org/0000-0003-4930-8981}
+       {\texttt{0000-0003-4930-8981}}
+}
+\date{September 6, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+The finite-checking approach to the Lonely Runner Conjecture associates a
+set \(J(k,p)\) of eventually improper tuples with each prime \(p\).  This
+report proves
+\[
+  J(14,29)=\varnothing,
+\]
+closing the prime-29 gate for fifteen total runners.  At level one modulo
+29, every folded speed class is bad at exactly one folded time class.  The
+unique improper orbit is therefore represented by
+\((1,2,\ldots,14)\).
+
+Every level-15 lift of this orbit is divided into two exhaustive symmetry
+branches.  In the branch containing a coordinate coprime to 15, a
+Chinese-remainder reduction forces a zero residue modulo 15 in one of
+coordinates 2 through 14.  Separately written C++ and Rust exact solvers
+reject all thirteen resulting cases.  In the branch with no coordinate
+coprime to 15, a 210-variable, 1842-clause CNF is unsatisfiable.  A
+368542-byte DRAT proof is accepted by both DRAT-trim and \texttt{rate}.
+
+The release certificate binds the source, formula, proof, logs, and original
+runs by SHA-256 and supports full recompilation and replay.  The closed gate
+contributes \(\log 29\) to the finite-checking prime mass.  It does not prove
+the complete fifteen-runner conjecture.
+\end{abstract}
+
+\section{Introduction}
+
+The Lonely Runner Conjecture asks whether, for \(n\) runners with distinct
+constant speeds on a unit circle, every runner is at some time at distance
+at least \(1/n\) from every other runner.  After subtracting the speed of one
+runner, the problem is expressed using \(k=n-1\) nonzero integer speeds.  We
+write \(LRC(k)\) for this \(k\)-moving-runner form.
+
+Sungkawichai and Trakulthongchai developed a finite-checking method based on
+improper modular families, exact lifting, backward projection, and prime
+gates \cite{sungkawichai-trakulthongchai}.  Their work establishes the
+conjecture through thirteen total runners.  Allikvere subsequently reported
+a computer-assisted proof for fourteen total runners
+\cite{allikvere-fourteen}.  The next full case is therefore \(LRC(14)\),
+corresponding to fifteen total runners.
+
+For each prime \(p\), the finite-checking method defines an
+eventual-improper set \(J(k,p)\).  Proving \(J(k,p)=\varnothing\) closes the
+prime-\(p\) gate.  A sufficient collection of closed gates proves \(LRC(k)\)
+when the sum of their logarithms exceeds an explicit threshold.  For
+\(k=14\), the current threshold is
+\[
+  \log B_{14}=810.0739811140556.
+\]
+
+This report closes one gate:
+\[
+  J(14,29)=\varnothing.
+\]
+The contribution is deliberately scoped.  Prime 29 contributes only
+\[
+  \log 29=3.367295829986474,
+\]
+about \(0.41568\) percent of the threshold.  The result is a certified input
+to a future full proof, not that proof itself.
+
+\section{Finite gate definitions}
+
+Fix \(k\geq 2\), put \(q=k+1\), and let \(p\) be prime.  At level
+\(\ell\geq 1\), the modulus is \(m=\ell p\).  For \(x\in\Z\), define
+\[
+  \distm{m}{x}=\min(x\bmod m,-x\bmod m),
+\]
+where both residues are represented in \(\{0,\ldots,m-1\}\).
+
+A \(k\)-tuple \(v=(v_1,\ldots,v_k)\), with no coordinate divisible by
+\(p\), has a lonely time witness at level \(\ell\) if some time class
+\(t\bmod m\) satisfies
+\[
+  q\,\distm{m}{t v_i}\geq m
+  \qquad\text{for every }i.
+\]
+There is also a gcd properness condition: the tuple is proper if, for some
+coordinate \(i\),
+\[
+  \gcd(\ell,v_1,\ldots,v_{i-1},v_{i+1},\ldots,v_k)>1.
+\]
+A tuple is improper when neither condition holds.
+
+A level-one tuple is eventually proper if some finite level contains no
+improper lift of that tuple.  The level-one tuples that are not eventually
+proper form \(J(k,p)\).  Coordinate permutations, independent sign changes,
+and multiplication by units preserve eventual properness.
+
+For the remainder of the report,
+\[
+  k=14,\qquad q=15,\qquad p=29.
+\]
+Folding by sign leaves fourteen nonzero speed classes and fourteen nonzero
+time classes modulo 29.
+
+\section{The unique level-one orbit}
+
+For a folded speed class \(v\in\{1,\ldots,14\}\), define its bad-time set
+\[
+  B_v=\{t\in\{1,\ldots,14\}:
+        15\,\distm{29}{t v}<29\}.
+\]
+
+\begin{lemma}
+\label{lem:singleton-bad}
+Every \(B_v\) contains exactly one folded time class, and the sets
+\(B_1,\ldots,B_{14}\) partition the folded nonzero time classes.
+\end{lemma}
+
+\begin{proof}
+For nonzero \(t,v\bmod 29\), the product \(tv\) is nonzero.  The strict
+inequality
+\[
+  15\,\distm{29}{tv}<29
+\]
+therefore holds exactly when \(\distm{29}{tv}=1\), or equivalently
+\(tv\equiv\pm1\pmod{29}\).  For fixed \(v\), this determines one folded
+time class.  Multiplication by \(v^{-1}\) permutes the nonzero classes, so
+the fourteen singleton sets partition the folded time classes.
+\end{proof}
+
+\begin{proposition}
+\label{prop:level-one}
+Up to permutation and independent signs, the unique level-one improper
+14-tuple is
+\[
+  (1,2,\ldots,14).
+\]
+\end{proposition}
+
+\begin{proof}
+A level-one tuple is improper only if the union of the bad-time sets of its
+coordinates covers all fourteen folded time classes.  By Lemma
+\ref{lem:singleton-bad}, each coordinate covers one class.  Fourteen
+coordinates cover all fourteen classes only when each folded speed class
+occurs exactly once.
+\end{proof}
+
+The release also contains an exact level-one generator.  It enumerates every
+covering support, expands multiplicities to total size 14, and quotients by
+permutation, signs, and units.  Its output is the same single orbit, with
+canonical row hash
+\[
+\texttt{a8d0f6ffa5961efb0405e27450d85cef2b471d9dcb4d2afc73b5f71c7127ed08}.
+\]
+
+\section{Level-15 lifts and symmetry}
+
+Label the coordinates of the representative from Proposition
+\ref{prop:level-one}.  Every level-15 lift can be written
+\[
+  v_i=i+29a_i,
+  \qquad 1\leq i\leq14,\quad 0\leq a_i<15.
+\]
+Define
+\[
+  c_i\equiv v_i\equiv i-a_i\pmod{15}.
+\]
+For each coordinate, \(a_i\mapsto c_i\) is a bijection of
+\(\Z/15\Z\).
+
+\begin{lemma}
+\label{lem:symmetry-split}
+Every improper level-15 lift is equivalent to a lift in one of the following
+branches.
+\begin{enumerate}[label=(\alph*),leftmargin=2.2em]
+  \item The coprime branch, normalized by \(v_1=1\), hence \(c_1=1\).
+  \item The noncoprime branch, in which every coordinate is noncoprime to
+        15 and \(v_3=3\).
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Suppose first that some coordinate is coprime to 15.  It is also nonzero
+modulo 29 and is therefore a unit modulo \(435=15\cdot29\).
+Multiplication by its inverse, followed by a sign change and coordinate
+permutation, normalizes that coordinate to 1.  Since the parent contains
+every nonzero folded class modulo 29, the normalized parent remains in the
+same orbit.  We label the normalized coordinate as coordinate 1.
+
+Now suppose no coordinate is coprime to 15.  An improper tuple must fail the
+gcd properness condition after every coordinate deletion.  In particular,
+at least two coordinates are not divisible by 3 and at least two are not
+divisible by 5.  A coordinate not divisible by 5 cannot be coprime to 15 in
+this branch, so its gcd with 15 is exactly 3.  Such a coordinate can be
+normalized to 3 by a unit modulo 435, a sign change, and a permutation.
+Unit multiplication preserves every coordinate's gcd with 15.
+\end{proof}
+
+\section{CRT reduction of the coprime branch}
+
+Let \(1\leq t\leq217\) represent a folded nonzero time class modulo 435.
+Put
+\[
+  x\equiv t\pmod{29},\qquad
+  y\equiv t\pmod{15},\qquad
+  r\equiv xi\pmod{29},
+\]
+with \(r\in\{0,\ldots,28\}\).
+
+\begin{lemma}
+\label{lem:crt}
+Coordinate \(i\) is bad at time \(t\) exactly under the following
+conditions:
+\[
+  \begin{cases}
+  yc_i\equiv0\pmod{15}, & r=0,\\
+  yc_i\equiv r\text{ or }r+1\pmod{15}, & r\neq0.
+  \end{cases}
+\]
+\end{lemma}
+
+\begin{proof}
+Badness means
+\[
+  15\,\distm{435}{t v_i}<435,
+\]
+so the signed representative of \(tv_i\bmod435\) has absolute value at most
+28.  Its residue modulo 29 is \(r\).
+
+If \(r=0\), the only representative in the allowed interval is 0.  The
+residue modulo 15 must therefore be 0.
+
+If \(r\neq0\), the two representatives in the allowed interval with residue
+\(r\bmod29\) are \(r\) and \(r-29\).  Their residues modulo 15 are \(r\)
+and \(r+1\), because \(-29\equiv1\pmod{15}\).  The residue of \(tv_i\)
+modulo 15 is \(yc_i\), proving the claim.
+\end{proof}
+
+Three consequences make the search finite and small enough for exhaustive
+replay.
+
+\begin{enumerate}[leftmargin=2.2em]
+  \item At \(t=29\), Lemma \ref{lem:crt} says that a coordinate is bad
+        exactly when \(c_i=0\).  Every time cover contains a zero residue.
+  \item Every folded multiple of 15 is covered automatically.  At each such
+        time, one parent coordinate is bad for every value of its residue
+        \(c_i\).
+  \item A coordinate with \(c_i=0\) covers every folded multiple of 29.
+\end{enumerate}
+
+There are 217 folded time classes, fourteen multiples of 15, and seven
+multiples of 29.  No class in this range is a multiple of both, leaving
+\[
+  217-14-7=196
+\]
+nontrivial time classes.  The normalization \(c_1=1\) puts the mandatory
+zero in one of coordinates \(2,\ldots,14\).  Thus the thirteen cases
+\[
+  c_j=0,\qquad j=2,\ldots,14,
+\]
+are exhaustive.  They overlap when a tuple has more than one zero, which is
+harmless for an unsatisfiability proof.
+
+\section{Exact coprime searches}
+
+Two separately written programs solve all thirteen coordinate-zero cases.
+
+The C++ implementation evaluates badness directly modulo 435 and branches
+on coordinate groups.  The Rust implementation uses Lemma \ref{lem:crt}
+and branches on individual clause literals.  Before the full replay launches
+the Rust searches, it invokes the binary's explicit self-test, which compares
+the CRT predicate exhaustively with direct modular arithmetic.
+
+Both programs omit the gcd properness clauses in this branch.  They prove
+the stronger statement that no normalized lift even covers every folded
+time class.
+
+\begin{table}[htbp]
+\centering
+\caption{Aggregate exact-search records for the thirteen coprime cases.}
+\label{tab:coprime-search}
+\begin{tabular}{lrrr}
+\toprule
+Implementation & Search nodes & Propagations & Fallback branches\\
+\midrule
+C++ direct arithmetic & 58,222,690 & 66,402,789 & 0\\
+Rust CRT              & 1,319,160,790 & 1,654,750,357 & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Every case exits with the exact status \texttt{UNSAT}.  The node counts need
+not agree because the branching units and arithmetic representations differ.
+The packaged full-replay command recompiles both source snapshots and reruns
+all twenty-six computations.
+
+\begin{proposition}
+\label{prop:coprime}
+No improper level-15 lift exists in the coprime branch.
+\end{proposition}
+
+\begin{proof}
+Every lift in the branch that covers all folded times has \(c_j=0\) for at
+least one \(j\in\{2,\ldots,14\}\).  Both exact implementations exhaust every
+assignment in each of these thirteen cases and return \texttt{UNSAT}.
+Therefore no assignment covers all folded times.
+\end{proof}
+
+\section{The noncoprime DRAT certificate}
+
+The noncoprime branch is encoded as a Boolean formula with one variable for
+each of the fifteen choices of each of fourteen labeled coordinates, giving
+210 variables.  The formula contains:
+
+\begin{itemize}[leftmargin=2em]
+  \item exactly-one constraints for each coordinate;
+  \item one bad-coordinate clause for every folded time class;
+  \item the exact simultaneous failure conditions for the factor-3 and
+        factor-5 gcd properness clauses;
+  \item unit clauses excluding choices coprime to 15; and
+  \item the symmetry anchor \(v_3=3\).
+\end{itemize}
+
+The resulting DIMACS instance has 1842 clauses.  Kissat 4.0.4 returns
+\texttt{UNSATISFIABLE} and produces a DRAT proof.  The principal artifact
+hashes are:
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Artifact & Size & SHA-256\\
+\midrule
+CNF & 52,466 bytes &
+\texttt{9869360a6aab0a6...d5b9b5fc5}\\
+DRAT proof & 368,542 bytes &
+\texttt{1554d825fa23b8b...933c9bacd}\\
+Summary & 3,737 bytes &
+\texttt{937d711941b68c2...344e4e16d}\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The complete hashes appear in the machine-readable manifest.  The checker
+source revisions are:
+\begin{center}
+\small
+\begin{tabular}{ll}
+DRAT-trim &
+\texttt{2e3b2dc0ecf938addbd779d42877b6ed69d9a985}\\
+\texttt{rate} &
+\texttt{93bf524435455ddc0b370669c17b1eb8741a026c}\\
+\end{tabular}
+\end{center}
+Both checkers accept the proof with the exact line
+\texttt{s VERIFIED}.
+
+\begin{proposition}
+\label{prop:noncoprime}
+No improper level-15 lift exists in the noncoprime branch.
+\end{proposition}
+
+\begin{proof}
+The CNF is an exact encoding of the normalized branch and of simultaneous
+failure of both properness mechanisms.  Its DRAT refutation is accepted by
+two independently implemented checkers.  Therefore the formula is
+unsatisfiable.
+\end{proof}
+
+\section{Main theorem}
+
+\begin{theorem}
+\label{thm:main}
+The prime-29 eventual-improper set for fourteen moving runners is empty:
+\[
+  J(14,29)=\varnothing.
+\]
+\end{theorem}
+
+\begin{proof}
+By Proposition \ref{prop:level-one}, every level-one improper tuple belongs
+to the orbit represented by \((1,2,\ldots,14)\).  Lemma
+\ref{lem:symmetry-split} puts every improper level-15 lift into the coprime
+or noncoprime branch.  The first is excluded by Proposition
+\ref{prop:coprime}; the second is excluded by Proposition
+\ref{prop:noncoprime}.  Thus the unique level-one orbit has no improper
+level-15 lift and is eventually proper.
+\end{proof}
+
+\section{Certificate and trust boundary}
+
+The release package separates three checks:
+
+\begin{enumerate}[leftmargin=2.2em]
+  \item exact regeneration of the unique level-one orbit;
+  \item dual-language exhaustive rejection of the coprime cases; and
+  \item proof-producing SAT rejection of the noncoprime case.
+\end{enumerate}
+
+Every included artifact is listed by path, byte count, and SHA-256 in a
+top-level manifest.  A bundled Git object archive binds the exact source
+history to the declared commit.  The fast verifier checks out that commit,
+compares every packaged solver and generator source with its Git object, and
+runs the original reconstruction verifier from the checked-out source.  The
+three original runs share source commit
+\[
+\texttt{f2f933bf16ab8eb5b081ddca59b18bf6b1b92e9d}.
+\]
+Each production runner verifies a clean tracked worktree, an unchanged
+40-character commit, and every source, executable, runner, Makefile, or
+proof-tool hash declared in its own provenance record before accepting its
+output.
+
+The standalone verifier has three modes.
+
+\begin{description}[leftmargin=2.8em,style=nextline]
+  \item[Fast integrity and reconstruction]
+    Checks the complete artifact manifest, exact claim fields, source
+    bundle, all transcripts, level-one generation, CRT identities, and a
+    fresh reconstruction of the noncoprime CNF.  It does not execute the
+    long searches or proof checkers.
+  \item[DRAT replay]
+    Runs DRAT-trim and \texttt{rate} on the packaged formula and proof.
+  \item[Full coprime replay]
+    Compiles the C++ and Rust sources from inside the certificate and reruns
+    all thirteen cases with each implementation.
+\end{description}
+
+Adversarial tests alter the theorem field, substitute the source commit,
+corrupt the Git bundle, add an unlisted nested \texttt{certificate.json},
+change packaged source while refreshing the outer artifact hash, and corrupt
+a structured summary.  Each mutation is rejected without an uncaught
+traceback.
+
+The noncoprime branch has a compact standard proof object.  The coprime
+branch does not.  Its strongest assurance comes from source review,
+different arithmetic formulations, fail-closed transcripts, and complete
+recompilation and replay.
+
+\section{Significance and remaining work}
+
+Theorem \ref{thm:main} contributes a certified prime gate to the
+finite-checking program.  It also supplies a factor-15 CRT reduction that can
+be tested on other primes and a source-bound release format suitable for long
+exact searches.
+
+The quantitative gap remains large.  Prime 29 contributes about
+\(0.41568\) percent of the required logarithmic mass.  A complete proof of
+\(LRC(14)\) requires many additional gates or a structural theorem that
+closes a substantial family at once.
+
+The immediate research directions are:
+
+\begin{itemize}[leftmargin=2em]
+  \item rank additional primes by level-one orbit count and forced-residue
+        structure;
+  \item extend the CRT analysis to those primes;
+  \item use proof-producing SAT whenever a branch admits a compact encoding;
+  \item retain separately written exhaustive solvers when a compact proof
+        object is unavailable; and
+  \item track cumulative certified prime mass against \(\log B_{14}\).
+\end{itemize}
+
+No claim is made that the dated public-source search found unpublished or
+unindexed computations.  No external peer review is claimed.
+
+\begingroup
+\raggedright
+\begin{thebibliography}{9}
+
+\bibitem{sungkawichai-trakulthongchai}
+T.~Sungkawichai and T.~Trakulthongchai,
+\emph{Eleven, twelve, and thirteen lonely runners},
+arXiv:2604.23906v1, 2026.
+\url{https://arxiv.org/abs/2604.23906}
+
+\bibitem{allikvere-fourteen}
+J.~Allikvere,
+\emph{Fourteen lonely runners},
+arXiv:2609.02604v1, 2026.
+\url{https://arxiv.org/abs/2609.02604}
+
+\bibitem{allikvere-archive}
+J.~Allikvere,
+\emph{Verification archive for Fourteen lonely runners},
+Zenodo, 2026.
+\url{https://doi.org/10.5281/zenodo.22066772}
+
+\end{thebibliography}
+\endgroup
+
+\end{document}

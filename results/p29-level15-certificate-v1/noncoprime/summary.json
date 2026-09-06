@@ -1,0 +1,118 @@
+{
+  "checkers": [
+    {
+      "exit_code": 0,
+      "log": "drat-trim.log",
+      "log_sha256": "b8b3f96aec02814e47f3ea1fe4b9b5dccda44afb1bcfa30c80a858d8a98a1856",
+      "name": "drat-trim",
+      "seconds": 0.06982854100000002,
+      "verified": true
+    },
+    {
+      "exit_code": 0,
+      "log": "rate.log",
+      "log_sha256": "aea2f3456e10b5bfb4813ab51e1f6f0ceb1fd98e22629ff5deea711ba8214b87",
+      "name": "rate",
+      "seconds": 0.04243475000000002,
+      "verified": true
+    }
+  ],
+  "format_version": 1,
+  "parameters": {
+    "k": 14,
+    "level": 15,
+    "p": 29,
+    "parent": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "symmetry_case": "noncoprime"
+  },
+  "proof": {
+    "bytes": 368542,
+    "file": "proof.drat",
+    "format": "DRAT",
+    "sha256": "1554d825fa23b8b66813bdb4016768ff3eb1c56eb80c2993ab89093533c9bacd"
+  },
+  "provenance": {
+    "sources": {
+      "cnf": {
+        "file": "cnf.py",
+        "sha256_after": "04477ff39ff0c2dddfbfeaeb3bee43c0b4674d59f752a5432d8af2cd8a0553df",
+        "sha256_before": "04477ff39ff0c2dddfbfeaeb3bee43c0b4674d59f752a5432d8af2cd8a0553df"
+      },
+      "crt": {
+        "file": "crt.py",
+        "sha256_after": "c0caf82dcb346c05bdaf56732bc2be44f14d6153d45dd0ddae65b87d246a1620",
+        "sha256_before": "c0caf82dcb346c05bdaf56732bc2be44f14d6153d45dd0ddae65b87d246a1620"
+      },
+      "model": {
+        "file": "model.py",
+        "sha256_after": "4fd5ac64e8f79b0b44346703ad901226af3e54d9bee0c3e46dfffd487d1594e1",
+        "sha256_before": "4fd5ac64e8f79b0b44346703ad901226af3e54d9bee0c3e46dfffd487d1594e1"
+      },
+      "p29-certificate": {
+        "file": "p29_certificate.py",
+        "sha256_after": "c7234c1282e4bcc56437b27155cd40e43a881973fae21062dc982fb8a79dd808",
+        "sha256_before": "c7234c1282e4bcc56437b27155cd40e43a881973fae21062dc982fb8a79dd808"
+      },
+      "runner": {
+        "file": "run_p29_noncoprime_proof.py",
+        "sha256_after": "8eb90c9d9ff58f97e84133a9f68c26803da31fa09a1bdf6b548a46f39006ff4f",
+        "sha256_before": "8eb90c9d9ff58f97e84133a9f68c26803da31fa09a1bdf6b548a46f39006ff4f"
+      }
+    },
+    "tools": {
+      "drat-trim": {
+        "file": "drat-trim",
+        "sha256_after": "f58f63b0f76945d4c4c9ff6e87afaf870f579e67c0f7cca589492df8fc7ebd47",
+        "sha256_before": "f58f63b0f76945d4c4c9ff6e87afaf870f579e67c0f7cca589492df8fc7ebd47"
+      },
+      "rate": {
+        "file": "rate",
+        "sha256_after": "deca518d9175fd299a1d165582461c4030ab8e6cef009ce101d487c38175f6b2",
+        "sha256_before": "deca518d9175fd299a1d165582461c4030ab8e6cef009ce101d487c38175f6b2"
+      },
+      "solver": {
+        "file": "kissat",
+        "sha256_after": "84411b3707b6c8f3f360e8fea1c3bfbcac0385bb87de22736257405a0be72932",
+        "sha256_before": "84411b3707b6c8f3f360e8fea1c3bfbcac0385bb87de22736257405a0be72932"
+      }
+    },
+    "unchanged_during_run": true
+  },
+  "query": {
+    "clauses": 1842,
+    "file": "query.cnf",
+    "sha256": "9869360a6aab0a65861fd98110558b4c2d9d8610c0d45cd72665048d5b9b5fc5",
+    "variables": 210
+  },
+  "repository": {
+    "head_after": "f2f933bf16ab8eb5b081ddca59b18bf6b1b92e9d",
+    "head_before": "f2f933bf16ab8eb5b081ddca59b18bf6b1b92e9d",
+    "tracked_worktree_clean_after": true,
+    "tracked_worktree_clean_before": true,
+    "unchanged_during_run": true
+  },
+  "solver": {
+    "exit_code": 20,
+    "log": "solver.log",
+    "log_sha256": "43eec7ff911b333fb6016bf2d34c39431135871ee0787661be7137048e8f1ce2",
+    "seconds": 0.0649305,
+    "version": "4.0.4"
+  },
+  "status": "VERIFIED_UNSAT",
+  "theorem_scope": "no improper level-15 lift exists in the normalized noncoprime symmetry branch"
+}

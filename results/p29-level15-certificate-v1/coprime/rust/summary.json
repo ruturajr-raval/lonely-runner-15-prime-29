@@ -1,0 +1,207 @@
+{
+  "case_coverage": "every coprime time cover has a zero residue modulo 15; the listed coordinate-zero cases cover all possibilities",
+  "cases_are_disjoint": false,
+  "expected_cases": 13,
+  "format_version": 1,
+  "implementation": "rust-crt-1.0.0",
+  "log_directory": "logs",
+  "parameters": {
+    "k": 14,
+    "level": 15,
+    "p": 29,
+    "parent": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14
+    ],
+    "symmetry_case": "coprime"
+  },
+  "provenance": {
+    "makefile": {
+      "file": "Makefile",
+      "sha256_after": "76d715c8dc9364c5c7274c6d573827df87a56f5690891d55af04ab35ccb9f792",
+      "sha256_before": "76d715c8dc9364c5c7274c6d573827df87a56f5690891d55af04ab35ccb9f792"
+    },
+    "runner": {
+      "file": "run_p29_zero_cases.py",
+      "sha256_after": "4e8b727cf3b85d823906c9cb4ef26392cbdedd72ee1311986e2a989d29a92de2",
+      "sha256_before": "4e8b727cf3b85d823906c9cb4ef26392cbdedd72ee1311986e2a989d29a92de2"
+    },
+    "solver": {
+      "file": "verify_p29_level15",
+      "sha256_after": "5b5bd0206abc52578f183e27e44d8a72a99902c251d62579200776862713f302",
+      "sha256_before": "5b5bd0206abc52578f183e27e44d8a72a99902c251d62579200776862713f302"
+    },
+    "source": {
+      "file": "verify_p29_level15.rs",
+      "sha256_after": "37036b845dda905ad7173b164d9f7b5eb4814fc7665215f84f8c18db0cfa4a9a",
+      "sha256_before": "37036b845dda905ad7173b164d9f7b5eb4814fc7665215f84f8c18db0cfa4a9a"
+    }
+  },
+  "provenance_unchanged_during_run": true,
+  "repository": {
+    "head_after": "f2f933bf16ab8eb5b081ddca59b18bf6b1b92e9d",
+    "head_before": "f2f933bf16ab8eb5b081ddca59b18bf6b1b92e9d",
+    "tracked_worktree_clean_after": true,
+    "tracked_worktree_clean_before": true,
+    "unchanged_during_run": true
+  },
+  "results": [
+    {
+      "coordinate": 2,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 2,
+      "log": "zero-c02.log",
+      "log_sha256": "96da4ac62f790e04deaa28851f55bc9d7ef088f825c5bdc95155c27cd805dab1",
+      "nodes": 99903247,
+      "propagations": 126367002,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 3,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 3,
+      "log": "zero-c03.log",
+      "log_sha256": "e2c36647927af2e336028ef9b11e39759ada27e925d1c9a67819175e6256ddcb",
+      "nodes": 106417605,
+      "propagations": 135373535,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 4,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 4,
+      "log": "zero-c04.log",
+      "log_sha256": "f81cd8c842dafaf91753f7f12adfde112c489441436c967f2e0833b9484a4999",
+      "nodes": 103133542,
+      "propagations": 128578471,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 5,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 5,
+      "log": "zero-c05.log",
+      "log_sha256": "7c8640484e9ea8115b4c6bfabb4adbc78d49b0f27a0052de637ce4d34c9d2e9d",
+      "nodes": 117087316,
+      "propagations": 145376763,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 6,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 6,
+      "log": "zero-c06.log",
+      "log_sha256": "27de5022ec36340bfd905ad76e10ff3289ed5093cbbc45f0381647dc2ee35259",
+      "nodes": 107481702,
+      "propagations": 134544600,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 7,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 7,
+      "log": "zero-c07.log",
+      "log_sha256": "fc150f22191d3e1fec5a20bb247d40a4b5db1c8cbd34e208b12c228fc7e91813",
+      "nodes": 85819557,
+      "propagations": 108163362,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 8,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 8,
+      "log": "zero-c08.log",
+      "log_sha256": "905124861d6248d0a419cff04257a776b0374017ea5198d021c90868dc096af7",
+      "nodes": 122889077,
+      "propagations": 151910500,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 9,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 9,
+      "log": "zero-c09.log",
+      "log_sha256": "d4af34931fc4133e1a96a330ad559f57c11a17d54ead031333d87bafb64df3a8",
+      "nodes": 100318354,
+      "propagations": 125779570,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 10,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 10,
+      "log": "zero-c10.log",
+      "log_sha256": "1e3e243fa5ba89fea3fae6d93427bb1788fce8836ea4549131d1f01afd99352f",
+      "nodes": 85091805,
+      "propagations": 106984593,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 11,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 11,
+      "log": "zero-c11.log",
+      "log_sha256": "389671f3faf23bc79ec519a91ed2802b1aa1589a7f079416a5c9d07a4f74f2b0",
+      "nodes": 97027412,
+      "propagations": 121509117,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 12,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 12,
+      "log": "zero-c12.log",
+      "log_sha256": "33fc4af902eb13edcc3b561a6eb578be4e784b59187c3823d1e27452d70ddf96",
+      "nodes": 101051891,
+      "propagations": 126714171,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 13,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 13,
+      "log": "zero-c13.log",
+      "log_sha256": "8d883052f0df763b6ad588ac9f0ef3f34ea7b89e1c8bd8dba06e695354a8915a",
+      "nodes": 83259619,
+      "propagations": 105795531,
+      "status": "UNSAT"
+    },
+    {
+      "coordinate": 14,
+      "domain_branches": 0,
+      "exit_code": 20,
+      "lift_choice": 14,
+      "log": "zero-c14.log",
+      "log_sha256": "707b445e5b5319944ffbb86631fdb3af1b789132c29774e3976c9cc17c034d76",
+      "nodes": 109679663,
+      "propagations": 137653142,
+      "status": "UNSAT"
+    }
+  ],
+  "solver_version": "verify_p29_level15 1.0.0\nrustc rustc 1.96.1 (31fca3adb 2026-06-26)",
+  "theorem_scope": "no level-15 lift in the coprime symmetry case covers all folded time classes"
+}

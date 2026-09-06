@@ -1,0 +1,11 @@
+nodes 1000000
+nodes 2000000
+nodes 3000000
+nodes 4000000
+case coprime
+constraint_mode time-cover-only
+status UNSAT
+nodes 4559294
+propagations 5206946
+domain_branches 0
+fixed 5:5

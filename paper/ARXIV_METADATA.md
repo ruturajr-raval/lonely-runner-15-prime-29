@@ -20,8 +20,9 @@ eventual-improper set J(k,p) with each prime p. This report proves
 J(14,29) is empty, closing the prime-29 gate for fifteen total runners. At
 level one modulo 29, every folded speed class is bad at exactly one folded
 time class, so the unique improper orbit is represented by
-(1,2,...,14). Every level-15 lift is divided into two exhaustive symmetry
-branches. In the branch containing a coordinate coprime to 15, a
+(1,2,...,14). Every improper level-15 lift is equivalent to a lift in one of
+two exhaustive symmetry branches. In the branch containing a coordinate
+coprime to 15, a
 Chinese-remainder reduction forces a zero residue modulo 15 in one of
 coordinates 2 through 14. Separately written C++ and Rust exact solvers
 reject all thirteen cases. In the branch with no coordinate coprime to 15,
@@ -56,9 +57,10 @@ arXiv.org perpetual, non-exclusive license
 
 ## DOI
 
-Version DOI: 10.5281/zenodo.22539842
-
 Stable concept DOI: 10.5281/zenodo.22539841
+
+The maintained `main`-branch copy records the `v0.1.1` version DOI after
+archival.
 
 ## Source Package
 

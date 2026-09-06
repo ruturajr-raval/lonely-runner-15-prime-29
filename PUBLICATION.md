@@ -1,4 +1,4 @@
-# Release v0.1.0
+# Release v0.1.1
 
 ## Background
 
@@ -18,8 +18,8 @@ J(14,29) = empty.
 ```
 
 At level one, the unique improper orbit is represented by
-`(1,2,...,14)`. Every level-15 lift belongs to an exhaustive coprime or
-noncoprime symmetry branch.
+`(1,2,...,14)`. Every improper level-15 lift is equivalent to a lift in one
+of two jointly exhaustive symmetry branches: coprime or noncoprime.
 
 For the coprime branch, a CRT reduction forces a zero residue modulo 15 in
 one of coordinates 2 through 14. A C++ direct-arithmetic solver and a Rust
@@ -30,6 +30,13 @@ For the noncoprime branch, Kissat reports an exact 210-variable,
 DRAT-trim and `rate` both accept the proof.
 
 The combined result closes the prime-29 finite-checking gate.
+
+## Correction Scope
+
+Version `v0.1.1` corrects overview wording from "every level-15 lift" to
+"every improper level-15 lift." The formal lemma, proof, certificate, data,
+and computational results are unchanged. Version `v0.1.0` remains archived,
+but `v0.1.1` supersedes it for wording accuracy.
 
 ## Verification
 
@@ -66,32 +73,22 @@ shasum -a 256 -c SHA256SUMS
 - Public repository:
   `https://github.com/ruturajr-raval/lonely-runner-15-prime-29`
 - GitHub release:
-  `https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.0`
-- Version DOI: `10.5281/zenodo.22539842`
+  `https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.1`
 - Stable concept DOI: `10.5281/zenodo.22539841`
-- Release commit:
-  `229dc21c13faa58d67c3207e4a2b8c277ac27e72`
 
 Release assets:
 
 ```text
 lonely-runner-15-prime-29-paper.pdf
-SHA-256 d5a660078866f6d488dcf2b9506c901b3e47d767f49a249ad7d73668b2552338
-
 lonely-runner-15-prime-29-source.tar.gz
-SHA-256 1a363a62bccefcf4af8c3b67c89a69ea2fe79755819df46bcee3e2a084e1f78e
-
 lonely-runner-15-prime-29-certificate-v1.tar.gz
-SHA-256 bc52d11ced8082405fa2a428a0fb605b7c0aefa7cfaa013f104fddaa86777c39
-
 SHA256SUMS
-SHA-256 17df2e0286ecba31fcc3c99a6a681675df3bcaafec4304cbfcaba1202c149df1
 ```
 
-The Zenodo repository snapshot is
-`ruturajr-raval/lonely-runner-15-prime-29-v0.1.0.zip`, with SHA-256
-`2d4aed1444dd95dec231f6638a4dbe4608657e390c3e12317164869e00d6a7f4`.
-All 109 archived files match the immutable release tag tree byte for byte.
+The release manifest records exact asset hashes. Zenodo assigns the version
+DOI after the GitHub release is archived. The maintained `main` branch records
+the DOI, release commit, asset hashes, archive filename, archive hash, and
+archive file count after deposit verification.
 
 ## What Is Not Claimed
 
@@ -123,5 +120,5 @@ fifteen-runner gates.
 
 ## Citation
 
-Citation metadata is in `CITATION.cff`. Cite the archived `v0.1.0` result
-using version DOI `10.5281/zenodo.22539842`.
+Citation metadata is in `CITATION.cff`. Cite release `v0.1.1`; its version DOI
+is recorded on `main` after archival.

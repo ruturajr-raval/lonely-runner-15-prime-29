@@ -15,7 +15,8 @@ Status date: 2026-09-06
 
 - At `k = 14`, `p = 29`, the unique level-one improper orbit is represented
   by `(1,2,...,14)`.
-- Every level-15 lift belongs to one of two exhaustive normalized branches.
+- Every improper level-15 lift is equivalent to a representative in one of
+  two exhaustive normalized branches.
 - The coprime branch has no time-covering lift. Two separately written exact
   solvers reject all thirteen mandatory-zero cases.
 - The noncoprime branch has no improper lift. Its exact CNF is unsatisfiable,

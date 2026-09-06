@@ -1,4 +1,11 @@
-# v0.1.0
+# v0.1.1
+
+This patch release corrects overview and abstract wording from "every
+level-15 lift" to "every improper level-15 lift." The formal lemma, theorem,
+proof, certificate, data, and computational results are unchanged.
+
+Release `v0.1.0` remains archived but is superseded by `v0.1.1` for wording
+accuracy.
 
 This release proves `J(14,29) = empty`, closing the prime-29 finite-checking
 gate for fifteen total runners.

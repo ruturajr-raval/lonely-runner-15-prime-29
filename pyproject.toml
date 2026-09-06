@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "lonely-runner-15"
-version = "0.1.0"
+version = "0.1.1"
 description = "Exact certificate and verification software for the prime-29 gate in the fifteen-runner Lonely Runner Problem"
 requires-python = ">=3.9"
 license = {text = "MIT"}

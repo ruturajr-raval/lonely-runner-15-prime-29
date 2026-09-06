@@ -11,9 +11,17 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY_SLUG = "ruturajr-raval/lonely-runner-15-prime-29"
 REPOSITORY_URL = f"https://github.com/{REPOSITORY_SLUG}"
-VERSION_DOI = "10.5281/zenodo.22539842"
 CONCEPT_DOI = "10.5281/zenodo.22539841"
 VERSION_PATTERN = r"[0-9]+\.[0-9]+\.[0-9]+"
+DOI_PATTERN = r"10\.5281/zenodo\.[0-9]+"
+SHA256_PATTERN = r"[0-9a-f]{64}"
+COMMIT_PATTERN = r"[0-9a-f]{40}"
+EXPECTED_ASSETS = (
+    "lonely-runner-15-prime-29-paper.pdf",
+    "lonely-runner-15-prime-29-source.tar.gz",
+    "lonely-runner-15-prime-29-certificate-v1.tar.gz",
+    "SHA256SUMS",
+)
 
 
 def require_match(
@@ -45,6 +53,7 @@ def main() -> int:
         "release-notes": root / "RELEASE_NOTES.md",
         "arxiv": root / "paper" / "ARXIV_METADATA.md",
         "pyproject": root / "pyproject.toml",
+        "release-record": root / ".release-record.json",
         "zenodo": root / ".zenodo.json",
     }
     for name, path in required.items():
@@ -91,10 +100,27 @@ def main() -> int:
     if not isinstance(zenodo_version, str):
         errors.append(".zenodo.json: version must be a string")
 
+    try:
+        release_record = json.loads(
+            required["release-record"].read_text(encoding="utf-8")
+        )
+    except (json.JSONDecodeError, OSError) as error:
+        errors.append(f".release-record.json: {error}")
+        release_record = {}
+    if release_record.get("schema") != 1:
+        errors.append(".release-record.json: schema must be 1")
+    record_version = release_record.get("version")
+    record_tag = release_record.get("tag")
+    version_doi = release_record.get("version_doi")
+    release_commit = release_record.get("release_commit")
+    assets = release_record.get("assets")
+    archive = release_record.get("zenodo_archive")
+
     if citation_version is not None:
         versions = {
             "CITATION.cff": citation_version,
             "pyproject.toml": pyproject_version,
+            ".release-record.json": record_version,
             ".zenodo.json": zenodo_version,
         }
         for name, version in versions.items():
@@ -105,6 +131,11 @@ def main() -> int:
                 )
 
         expected_tag = f"v{citation_version}"
+        if record_tag != expected_tag:
+            errors.append(
+                ".release-record.json: tag "
+                f"{record_tag!r} does not match {expected_tag!r}"
+            )
         expected_headers = {
             "PUBLICATION.md": (
                 required["publication"],
@@ -144,24 +175,97 @@ def main() -> int:
     if release_date is None:
         errors.append("CITATION.cff: release date is invalid")
 
-    required_dois = {
-        "CITATION.cff": (
-            required["citation"],
-            (VERSION_DOI, VERSION_DOI),
-        ),
+    archived = version_doi is not None
+    if archived:
+        if not isinstance(version_doi, str) or re.fullmatch(
+            DOI_PATTERN, version_doi
+        ) is None:
+            errors.append(".release-record.json: invalid version_doi")
+        if not isinstance(release_commit, str) or re.fullmatch(
+            COMMIT_PATTERN, release_commit
+        ) is None:
+            errors.append(".release-record.json: invalid release_commit")
+        if not isinstance(assets, dict) or set(assets) != set(EXPECTED_ASSETS):
+            errors.append(".release-record.json: invalid asset set")
+        else:
+            for name in EXPECTED_ASSETS:
+                digest = assets.get(name)
+                if not isinstance(digest, str) or re.fullmatch(
+                    SHA256_PATTERN, digest
+                ) is None:
+                    errors.append(
+                        f".release-record.json: invalid SHA-256 for {name}"
+                    )
+        if not isinstance(archive, dict):
+            errors.append(".release-record.json: invalid zenodo_archive")
+        else:
+            filename = archive.get("filename")
+            archive_sha256 = archive.get("sha256")
+            file_count = archive.get("file_count")
+            if not isinstance(filename, str) or not filename.endswith(".zip"):
+                errors.append(
+                    ".release-record.json: invalid archive filename"
+                )
+            if not isinstance(archive_sha256, str) or re.fullmatch(
+                SHA256_PATTERN, archive_sha256
+            ) is None:
+                errors.append(
+                    ".release-record.json: invalid archive SHA-256"
+                )
+            if (
+                not isinstance(file_count, int)
+                or isinstance(file_count, bool)
+                or file_count <= 0
+            ):
+                errors.append(
+                    ".release-record.json: invalid archive file_count"
+                )
+    else:
+        if release_commit is not None:
+            errors.append(
+                ".release-record.json: release_commit must be null "
+                "before archival"
+            )
+        if not isinstance(assets, dict) or set(assets) != set(EXPECTED_ASSETS):
+            errors.append(".release-record.json: invalid asset set")
+        elif any(assets.get(name) is not None for name in EXPECTED_ASSETS):
+            errors.append(
+                ".release-record.json: asset hashes must be null "
+                "before archival"
+            )
+        expected_archive = {
+            "filename": None,
+            "sha256": None,
+            "file_count": None,
+        }
+        if archive != expected_archive:
+            errors.append(
+                ".release-record.json: archive fields must be null "
+                "before archival"
+            )
+
+    required_dois: dict[str, tuple[Path, tuple[str, ...]]] = {
         "README.md": (
             required["readme"],
-            (VERSION_DOI, CONCEPT_DOI),
+            (CONCEPT_DOI,),
         ),
         "PUBLICATION.md": (
             required["publication"],
-            (VERSION_DOI, CONCEPT_DOI),
+            (CONCEPT_DOI,),
         ),
         "paper/ARXIV_METADATA.md": (
             required["arxiv"],
-            (VERSION_DOI, CONCEPT_DOI),
+            (CONCEPT_DOI,),
         ),
     }
+    if isinstance(version_doi, str):
+        required_dois["CITATION.cff"] = (
+            required["citation"],
+            (version_doi, version_doi),
+        )
+        for name in ("README.md", "PUBLICATION.md", "paper/ARXIV_METADATA.md"):
+            path, dois = required_dois[name]
+            required_dois[name] = (path, dois + (version_doi,))
     for name, (path, dois) in required_dois.items():
         text = path.read_text(encoding="utf-8")
         for doi in set(dois):
@@ -171,6 +275,41 @@ def main() -> int:
                 errors.append(
                     f"{name}: expected at least {expected_count} "
                     f"occurrence(s) of {doi}, found {actual_count}"
+                )
+
+    release_facing: dict[str, Path] = {
+        ".zenodo.json": required["zenodo"],
+        "CITATION.cff": required["citation"],
+        "README.md": required["readme"],
+        "PUBLICATION.md": required["publication"],
+        "paper/ARXIV_METADATA.md": required["arxiv"],
+    }
+    allowed_dois = {CONCEPT_DOI}
+    if isinstance(version_doi, str):
+        allowed_dois.add(version_doi)
+    for name, path in release_facing.items():
+        text = path.read_text(encoding="utf-8")
+        for doi in set(re.findall(DOI_PATTERN, text)):
+            if doi not in allowed_dois:
+                errors.append(f"{name}: contains unrecognized Zenodo DOI {doi}")
+
+    if archived and isinstance(assets, dict) and isinstance(archive, dict):
+        publication = required["publication"].read_text(encoding="utf-8")
+        expected_lines = (
+            f"- Version DOI: `{version_doi}`",
+            f"- Release commit: `{release_commit}`",
+            *(
+                f"- `{name}`: `{assets.get(name)}`"
+                for name in EXPECTED_ASSETS
+            ),
+            f"- Zenodo archive: `{archive.get('filename')}`",
+            f"- Zenodo archive SHA-256: `{archive.get('sha256')}`",
+            f"- Archived file count: `{archive.get('file_count')}`",
+        )
+        for line in expected_lines:
+            if line not in publication:
+                errors.append(
+                    f"PUBLICATION.md: missing archival record line: {line}"
                 )
 
     if errors:

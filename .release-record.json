@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "version": "0.1.1",
+  "tag": "v0.1.1",
+  "version_doi": null,
+  "release_commit": null,
+  "assets": {
+    "lonely-runner-15-prime-29-paper.pdf": null,
+    "lonely-runner-15-prime-29-source.tar.gz": null,
+    "lonely-runner-15-prime-29-certificate-v1.tar.gz": null,
+    "SHA256SUMS": null
+  },
+  "zenodo_archive": {
+    "filename": null,
+    "sha256": null,
+    "file_count": null
+  }
+}

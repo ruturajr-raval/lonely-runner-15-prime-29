@@ -15,9 +15,10 @@ stationary.
 The result is a rigorous component of the finite-checking program for the
 next open case. It does not prove the full fifteen-runner conjecture.
 
-The exact `v0.1.0` release is archived at version DOI
-`10.5281/zenodo.22539842`. All repository versions are collected under the
-stable concept DOI `10.5281/zenodo.22539841`.
+Release `v0.1.1` corrects the scope wording in the overview and report
+abstract without changing the theorem, proof, certificate, data, or
+computational results. All archived versions are collected under the stable
+concept DOI `10.5281/zenodo.22539841`.
 
 ## Background
 
@@ -53,8 +54,8 @@ once. Up to permutation and signs, the unique level-one improper tuple is
 (1, 2, 3, ..., 14).
 ```
 
-Every level-15 lift of this tuple is then divided into two exhaustive
-symmetry branches.
+Every improper level-15 lift of this tuple is equivalent to a lift in one of
+two exhaustive symmetry branches.
 
 - In the coprime branch, a CRT reduction forces one of coordinates 2 through
   14 to have residue zero modulo 15. Two separately written exact solvers,
@@ -162,8 +163,8 @@ The dated public-source audit is in
 
 ## Citation
 
-Citation metadata is in `CITATION.cff`. Cite the exact `v0.1.0` result using
-version DOI `10.5281/zenodo.22539842`. The stable all-versions DOI is
+Citation metadata is in `CITATION.cff`. Cite release `v0.1.1`; its version DOI
+is recorded on `main` after archival. The stable all-versions DOI is
 `10.5281/zenodo.22539841`. The technical report source is under `paper/`.
 
 ## Author

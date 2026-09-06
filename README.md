@@ -23,10 +23,10 @@ stable concept DOI `10.5281/zenodo.22539841`.
 
 ## Background
 
-For a prime `p`, the finite-checking method studies level-one tuples that
-remain improper through every modular lift. Their eventual-improper set is
-denoted by `J(k,p)`, where `k` is the number of moving runners. Proving
-`J(k,p) = empty` closes one prime gate.
+For a prime `p`, a level-one tuple belongs to the eventual-improper set
+`J(k,p)` when every finite lifting level contains at least one improper lift,
+where `k` is the number of moving runners. Proving `J(k,p) = empty` closes one
+prime gate.
 
 The published 2026 finite-checking reports cover the conjecture through
 fourteen total runners. The next case has `k = 14`, and a complete

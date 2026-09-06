@@ -25,10 +25,13 @@
 The Lonely Runner Conjecture asks whether, for distinct nonzero integer
 speeds, there exists one time at which every moving runner is simultaneously
 at distance at least `1/(k+1)` from the origin after one runner is fixed. The
-case of fifteen total runners is the next finite-checking target after the
-published 2026 fourteen-runner work. A complete proof through this
-finite-checking framework requires closed prime gates whose logarithmic mass
-exceeds `log B_14 = 810.0739811140556`; that full case remains open.
+underlying problem dates to Wills's 1967 work and Cusick's 1973
+view-obstruction formulation, so the general conjecture has remained open for
+nearly six decades. The case of fifteen total runners is the next
+finite-checking target after the published 2026 fourteen-runner work. A
+complete proof through this framework requires closed prime gates whose
+logarithmic mass exceeds `log B_14 = 810.0739811140556`; that full case
+remains open.
 
 ### Work And Verified Outcome
 
@@ -73,7 +76,9 @@ independently checked closed-gate mass.
 The public repository is
 [`ruturajr-raval/lonely-runner-15-prime-29`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29).
 The immutable tagged release is
-[`v0.1.1`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.1).
+[`v0.1.1`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.1)
+at audited release commit
+`bfc58364d975a862153307766386b51fe8289e57`.
 It is archived at version DOI `10.5281/zenodo.22541517`; the stable
 all-versions DOI is `10.5281/zenodo.22539841`. The Zenodo snapshot contains
 110 files, all checked byte for byte against the release tag tree. GitHub and
@@ -85,8 +90,9 @@ closes a stated family of gates, with source-bound evidence and independent
 replay. Project-original material is MIT-licensed. The finite-checking
 framework is attributed to the cited papers and independently implemented
 here; external SAT and proof-checking tools retain their own licenses.
-Citation metadata is in `CITATION.cff`. The author is Ruturaj R Raval,
-Independent Researcher, ORCID `0000-0003-4930-8981`.
+Citation metadata is in `CITATION.cff`, and release history is in
+`RELEASE_NOTES.md`. The author is Ruturaj R Raval, Independent Researcher,
+ORCID `0000-0003-4930-8981`.
 
 This repository proves
 

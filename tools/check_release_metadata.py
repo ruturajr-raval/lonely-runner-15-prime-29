@@ -11,6 +11,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 REPOSITORY_SLUG = "ruturajr-raval/lonely-runner-15-prime-29"
 REPOSITORY_URL = f"https://github.com/{REPOSITORY_SLUG}"
+VERSION_DOI = "10.5281/zenodo.22539842"
+CONCEPT_DOI = "10.5281/zenodo.22539841"
 VERSION_PATTERN = r"[0-9]+\.[0-9]+\.[0-9]+"
 
 
@@ -38,8 +40,10 @@ def main() -> int:
     errors: list[str] = []
     required = {
         "citation": root / "CITATION.cff",
+        "readme": root / "README.md",
         "publication": root / "PUBLICATION.md",
         "release-notes": root / "RELEASE_NOTES.md",
+        "arxiv": root / "paper" / "ARXIV_METADATA.md",
         "pyproject": root / "pyproject.toml",
         "zenodo": root / ".zenodo.json",
     }
@@ -139,6 +143,35 @@ def main() -> int:
         )
     if release_date is None:
         errors.append("CITATION.cff: release date is invalid")
+
+    required_dois = {
+        "CITATION.cff": (
+            required["citation"],
+            (VERSION_DOI, VERSION_DOI),
+        ),
+        "README.md": (
+            required["readme"],
+            (VERSION_DOI, CONCEPT_DOI),
+        ),
+        "PUBLICATION.md": (
+            required["publication"],
+            (VERSION_DOI, CONCEPT_DOI),
+        ),
+        "paper/ARXIV_METADATA.md": (
+            required["arxiv"],
+            (VERSION_DOI, CONCEPT_DOI),
+        ),
+    }
+    for name, (path, dois) in required_dois.items():
+        text = path.read_text(encoding="utf-8")
+        for doi in set(dois):
+            expected_count = dois.count(doi)
+            actual_count = text.count(doi)
+            if actual_count < expected_count:
+                errors.append(
+                    f"{name}: expected at least {expected_count} "
+                    f"occurrence(s) of {doi}, found {actual_count}"
+                )
 
     if errors:
         for error in errors:

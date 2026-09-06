@@ -61,6 +61,38 @@ verify the release manifest with:
 shasum -a 256 -c SHA256SUMS
 ```
 
+## Release And Archive
+
+- Public repository:
+  `https://github.com/ruturajr-raval/lonely-runner-15-prime-29`
+- GitHub release:
+  `https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.0`
+- Version DOI: `10.5281/zenodo.22539842`
+- Stable concept DOI: `10.5281/zenodo.22539841`
+- Release commit:
+  `229dc21c13faa58d67c3207e4a2b8c277ac27e72`
+
+Release assets:
+
+```text
+lonely-runner-15-prime-29-paper.pdf
+SHA-256 d5a660078866f6d488dcf2b9506c901b3e47d767f49a249ad7d73668b2552338
+
+lonely-runner-15-prime-29-source.tar.gz
+SHA-256 1a363a62bccefcf4af8c3b67c89a69ea2fe79755819df46bcee3e2a084e1f78e
+
+lonely-runner-15-prime-29-certificate-v1.tar.gz
+SHA-256 bc52d11ced8082405fa2a428a0fb605b7c0aefa7cfaa013f104fddaa86777c39
+
+SHA256SUMS
+SHA-256 17df2e0286ecba31fcc3c99a6a681675df3bcaafec4304cbfcaba1202c149df1
+```
+
+The Zenodo repository snapshot is
+`ruturajr-raval/lonely-runner-15-prime-29-v0.1.0.zip`, with SHA-256
+`2d4aed1444dd95dec231f6638a4dbe4608657e390c3e12317164869e00d6a7f4`.
+All 109 archived files match the immutable release tag tree byte for byte.
+
 ## What Is Not Claimed
 
 - The full fifteen-runner Lonely Runner Conjecture is not proved.
@@ -91,6 +123,5 @@ fifteen-runner gates.
 
 ## Citation
 
-Citation metadata is in `CITATION.cff`. Every GitHub release includes its
-`SHA256SUMS` manifest. Zenodo identifiers and archive hashes are recorded here
-after the release is deposited.
+Citation metadata is in `CITATION.cff`. Cite the archived `v0.1.0` result
+using version DOI `10.5281/zenodo.22539842`.

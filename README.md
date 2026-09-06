@@ -1,5 +1,7 @@
 # Prime-29 Gate for Fifteen Lonely Runners
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22539841.svg)](https://doi.org/10.5281/zenodo.22539841)
+
 This repository proves
 
 ```text
@@ -12,6 +14,10 @@ stationary.
 
 The result is a rigorous component of the finite-checking program for the
 next open case. It does not prove the full fifteen-runner conjecture.
+
+The exact `v0.1.0` release is archived at version DOI
+`10.5281/zenodo.22539842`. All repository versions are collected under the
+stable concept DOI `10.5281/zenodo.22539841`.
 
 ## Background
 
@@ -156,8 +162,9 @@ The dated public-source audit is in
 
 ## Citation
 
-Citation metadata is in `CITATION.cff`. The technical report source is under
-`paper/`.
+Citation metadata is in `CITATION.cff`. Cite the exact `v0.1.0` result using
+version DOI `10.5281/zenodo.22539842`. The stable all-versions DOI is
+`10.5281/zenodo.22539841`. The technical report source is under `paper/`.
 
 ## Author
 

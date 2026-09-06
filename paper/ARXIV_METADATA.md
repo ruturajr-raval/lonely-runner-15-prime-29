@@ -54,6 +54,12 @@ Chinese remainder theorem; SAT solving; DRAT; computer-assisted proof
 
 arXiv.org perpetual, non-exclusive license
 
+## DOI
+
+Version DOI: 10.5281/zenodo.22539842
+
+Stable concept DOI: 10.5281/zenodo.22539841
+
 ## Source Package
 
 Upload the LaTeX source and only the files required to compile it. The paper

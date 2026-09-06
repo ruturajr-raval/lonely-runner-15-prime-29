@@ -13,10 +13,12 @@ ROOT = Path(__file__).resolve().parents[1]
 CHECKER = ROOT / "tools" / "check_release_metadata.py"
 METADATA_FILES = (
     "CITATION.cff",
+    "README.md",
     "PUBLICATION.md",
     "RELEASE_NOTES.md",
     "pyproject.toml",
     ".zenodo.json",
+    "paper/ARXIV_METADATA.md",
 )
 
 
@@ -47,7 +49,9 @@ class ReleaseMetadataTests(unittest.TestCase):
 
     def copy_metadata(self, destination: Path) -> None:
         for relative in METADATA_FILES:
-            shutil.copy2(ROOT / relative, destination / relative)
+            target = destination / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(ROOT / relative, target)
 
     def test_current_metadata_is_consistent(self) -> None:
         completed = self.run_checker(
@@ -92,6 +96,24 @@ class ReleaseMetadataTests(unittest.TestCase):
             completed = self.run_checker(root)
         self.assertNotEqual(completed.returncode, 0)
         self.assertIn(".zenodo.json: version", completed.stderr)
+
+    def test_missing_version_doi_is_rejected(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            self.copy_metadata(root)
+            path = root / "CITATION.cff"
+            text = path.read_text(encoding="utf-8")
+            path.write_text(
+                text.replace(
+                    "10.5281/zenodo.22539842",
+                    "10.5281/zenodo.00000000",
+                    1,
+                ),
+                encoding="utf-8",
+            )
+            completed = self.run_checker(root)
+        self.assertNotEqual(completed.returncode, 0)
+        self.assertIn("CITATION.cff: expected at least", completed.stderr)
 
 
 if __name__ == "__main__":

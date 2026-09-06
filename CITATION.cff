@@ -9,6 +9,9 @@ authors:
     affiliation: Independent Researcher
     orcid: "https://orcid.org/0000-0003-4930-8981"
 repository-code: "https://github.com/ruturajr-raval/lonely-runner-15-prime-29"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22539842"
 keywords:
   - lonely runner conjecture
   - Diophantine approximation
@@ -22,6 +25,9 @@ date-released: 2026-09-06
 preferred-citation:
   type: article
   title: "A Level-15 Certificate for the Prime-29 Gate in the Fifteen-Runner Lonely Runner Problem"
+  identifiers:
+    - type: doi
+      value: "10.5281/zenodo.22539842"
   authors:
     - family-names: Raval
       given-names: Ruturaj R

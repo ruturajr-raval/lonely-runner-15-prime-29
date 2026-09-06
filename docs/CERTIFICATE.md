@@ -47,10 +47,12 @@ Build DRAT-trim at commit
 `93bf524435455ddc0b370669c17b1eb8741a026c`, then run:
 
 ```console
+DRAT_TRIM_BIN="${DRAT_TRIM_BIN:-drat-trim}"
+RATE_BIN="${RATE_BIN:-rate}"
 python3 tools/verify_p29_certificate.py \
   --certificate-dir results/p29-level15-certificate-v1 \
-  --drat-trim /path/to/drat-trim \
-  --rate /path/to/rate
+  --drat-trim "$DRAT_TRIM_BIN" \
+  --rate "$RATE_BIN"
 ```
 
 Both checkers must print the exact line `s VERIFIED` and exit successfully.
@@ -62,13 +64,28 @@ stored inside the selected certificate, checks the noncoprime DRAT proof,
 and reruns all twenty-six coprime cases:
 
 ```console
+DRAT_TRIM_BIN="${DRAT_TRIM_BIN:-drat-trim}"
+RATE_BIN="${RATE_BIN:-rate}"
 python3 tools/verify_p29_certificate.py \
   --certificate-dir results/p29-level15-certificate-v1 \
-  --drat-trim /path/to/drat-trim \
-  --rate /path/to/rate \
+  --drat-trim "$DRAT_TRIM_BIN" \
+  --rate "$RATE_BIN" \
   --full-replay \
   --jobs 4
 ```
+
+The successful `v0.1.1` hosted replay spent about 34 minutes in the complete
+certificate step on a standard public `ubuntu-latest` runner with 4 vCPUs and
+16 GB of RAM:
+
+`https://github.com/ruturajr-raval/lonely-runner-15-prime-29/actions/runs/34037387722`
+
+GitHub's current standard-runner specification is documented at:
+
+`https://docs.github.com/en/actions/reference/runners/github-hosted-runners`
+
+This records available capacity, not measured peak memory. Local runtime and
+memory use vary with the toolchain, operating system, and `--jobs` value.
 
 This path does not substitute current working-tree sources for the archived
 production sources.

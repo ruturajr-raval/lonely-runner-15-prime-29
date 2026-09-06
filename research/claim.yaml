@@ -1,0 +1,61 @@
+schema_version: 1
+project: lonely-runner-15-prime-29
+author: Ruturaj R Raval
+affiliation: Independent Researcher
+orcid: 0000-0003-4930-8981
+updated: 2026-09-06
+status: released_scoped_result
+target:
+  type: finite-checking-prime-gate
+  object: J(14,29)
+  parent_problem: LRC(14)
+  parent_interpretation: fifteen_total_runners
+current_supported_claim:
+  statement: >-
+    For fourteen moving runners at prime 29, the unique level-one improper
+    orbit is represented by (1,2,...,14). Every improper level-15 lift belongs
+    to one of two exhaustive symmetry branches. Two independently written
+    exact solvers exclude all thirteen coprime coordinate-zero cases, and a
+    checked DRAT proof excludes the noncoprime branch. Consequently,
+    J(14,29) is empty.
+  fixed_object_theorem_complete: true
+  prime_gate_closed: true
+  parent_problem_resolved: false
+  global_bound_improved: false
+verification:
+  level_one_improper_orbits: 1
+  lifting_level: 15
+  coprime_coordinate_zero_cases: 13
+  cpp_exact_solver_passes: true
+  rust_exact_solver_passes: true
+  noncoprime_cnf_variables: 210
+  noncoprime_cnf_clauses: 1842
+  noncoprime_drat_bytes: 368542
+  drat_trim_accepts: true
+  rate_accepts: true
+  source_bound_certificate: true
+  fast_integrity_replay: true
+  full_source_replay_available: true
+  mutation_tests_fail_closed: true
+release:
+  version: 0.1.1
+  tag: v0.1.1
+  version_doi: 10.5281/zenodo.22541517
+  concept_doi: 10.5281/zenodo.22539841
+  archive_file_count: 110
+  archive_matches_tag: true
+  correction_scope: wording_only
+novelty:
+  public_sources_checked_through: 2026-09-06
+  indexed_prior_closure_of_J_14_29_found: false
+  unpublished_or_unindexed_priority_claimed: false
+limitations:
+  - The full Lonely Runner Conjecture for fifteen total runners is not proved.
+  - No prime gate other than 29 is closed by this project.
+  - The accumulated closed-gate mass does not reach the finite-checking threshold.
+  - The coprime branch has dual exhaustive implementations rather than a compact standard proof object.
+  - No external mathematical review is claimed.
+future_acceptance:
+  - Close an additional prime gate with source-bound evidence and independent replay.
+  - Prove a stated family theorem that closes multiple prime gates.
+  - Claim LRC(14) only after the verified threshold is reached or superseded by a separate theorem.

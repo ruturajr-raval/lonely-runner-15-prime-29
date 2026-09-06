@@ -1,5 +1,7 @@
 # v0.1.1
 
+## [v0.1.1](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.1) - 2026-09-06
+
 This patch release corrects overview and abstract wording from "every
 level-15 lift" to "every improper level-15 lift." The formal lemma, theorem,
 proof, certificate, data, and computational results are unchanged.
@@ -24,3 +26,15 @@ Included evidence:
 - a technical report and publication metadata.
 
 The release does not prove the full fifteen-runner Lonely Runner Conjecture.
+It is archived at version DOI `10.5281/zenodo.22541517`.
+
+## [v0.1.0](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.0) - 2026-09-06
+
+- First release of the theorem `J(14,29) = empty`.
+- Included the factor-15 CRT reduction, dual exact coprime solvers,
+  noncoprime CNF and DRAT proof, source-bound certificate, mutation tests,
+  technical report, and release metadata.
+- Used imprecise overview wording about level-15 lifts that was corrected in
+  `v0.1.1`; the formal theorem and evidence were already scoped correctly.
+- Did not prove the full fifteen-runner Lonely Runner Conjecture.
+- Archived at version DOI `10.5281/zenodo.22539842`.

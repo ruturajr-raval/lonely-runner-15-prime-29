@@ -1,5 +1,18 @@
 # Release v0.1.1
 
+## Release Identity
+
+| Field | Value |
+| --- | --- |
+| Title | A Level-15 Certificate for the Prime-29 Gate in the Fifteen-Runner Lonely Runner Problem |
+| Tagged release | [`v0.1.1`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.1) |
+| Release date | 2026-09-06 |
+| Audited release commit | `bfc58364d975a862153307766386b51fe8289e57` |
+| Version DOI | [`10.5281/zenodo.22541517`](https://doi.org/10.5281/zenodo.22541517) |
+| Concept DOI | [`10.5281/zenodo.22539841`](https://doi.org/10.5281/zenodo.22539841) |
+| Archive status | Published 110-file Zenodo snapshot matching the release tag |
+| License | MIT for project-original material |
+
 ## Background
 
 The finite-checking approach to the Lonely Runner Conjecture associates an
@@ -49,10 +62,12 @@ The full replay recompiles the exact C++ and Rust source snapshots packaged
 with the certificate and reruns all twenty-six coprime cases:
 
 ```bash
+DRAT_TRIM_BIN="${DRAT_TRIM_BIN:-drat-trim}"
+RATE_BIN="${RATE_BIN:-rate}"
 python3 tools/verify_p29_certificate.py \
   --certificate-dir results/p29-level15-certificate-v1 \
-  --drat-trim /path/to/drat-trim \
-  --rate /path/to/rate \
+  --drat-trim "$DRAT_TRIM_BIN" \
+  --rate "$RATE_BIN" \
   --full-replay \
   --jobs 4
 ```
@@ -91,6 +106,21 @@ Release assets:
 
 All 110 archived files match the immutable `v0.1.1` tag tree byte for byte.
 
+## Provenance Boundary
+
+Project-original source, certificate assembly, documentation, and report
+material are MIT licensed. The finite-checking framework is attributed to the
+cited literature and implemented independently. Kissat, DRAT-trim, and
+`rate` remain external tools under their upstream terms; their exact source
+revisions are bound in the certificate provenance.
+
+## Review Status
+
+The release passed theorem-scope, exact-solver, CNF, dual proof-checker,
+source-binding, mutation, manuscript, and release-metadata review. The full
+tagged replay rebuilds and checks the selected certificate from its recorded
+sources. No external mathematical or peer review is claimed.
+
 ## What Is Not Claimed
 
 - The full fifteen-runner Lonely Runner Conjecture is not proved.
@@ -119,7 +149,24 @@ It also supplies a reusable factor-15 CRT reduction, independently written
 exact solvers, and a compact source-bound certificate design for future
 fifteen-runner gates.
 
+## Remaining Work And Next Acceptance Gate
+
+The next result gate is a second exact prime-gate theorem, or a theorem that
+closes a stated family of gates, with source-bound evidence and independent
+replay. A full `LRC(14)` claim additionally requires verified closed-gate
+mass above `log B_14 = 810.0739811140556`, unless a separate theorem replaces
+that threshold.
+
+## Public Summary
+
+Release `v0.1.1` proves `J(14,29) = empty`, closing the prime-29
+finite-checking gate for fifteen total runners. Two independently written
+exact solvers reject the coprime branch, and a DRAT proof accepted by
+DRAT-trim and `rate` rejects the noncoprime branch. This closes one prime gate
+and does not prove the full fifteen-runner Lonely Runner Conjecture.
+
 ## Citation
 
 Citation metadata is in `CITATION.cff`. Cite release `v0.1.1` using version
 DOI `10.5281/zenodo.22541517`.
+Historical release scope is summarized in `RELEASE_NOTES.md`.

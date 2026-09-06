@@ -21,10 +21,12 @@ For complete replay, provide DRAT-trim and `rate`, a C++17 compiler, and a
 Rust compiler:
 
 ```bash
+DRAT_TRIM_BIN="${DRAT_TRIM_BIN:-drat-trim}"
+RATE_BIN="${RATE_BIN:-rate}"
 python3 tools/verify_p29_certificate.py \
   --certificate-dir results/p29-level15-certificate-v1 \
-  --drat-trim /path/to/drat-trim \
-  --rate /path/to/rate \
+  --drat-trim "$DRAT_TRIM_BIN" \
+  --rate "$RATE_BIN" \
   --full-replay \
   --jobs 4
 ```

@@ -2,6 +2,18 @@
 
 Status date: 2026-09-06
 
+## Historical Origin
+
+The number-theoretic form of the problem appears in J. M. Wills,
+"Zwei Satze uber inhomogene diophantische Approximation von
+Irrationalzahlen", *Monatshefte fur Mathematik* 71 (1967), 263-269,
+DOI `10.1007/BF01298332`.
+
+T. W. Cusick formulated the related view-obstruction problem in
+"View-obstruction problems", *Aequationes Mathematicae* 9 (1973), 165-170,
+DOI `10.1007/BF01832623`. The runner interpretation and the name "Lonely
+Runner Conjecture" came later.
+
 ## Finite-Checking Framework
 
 Touch Sungkawichai and Tanupat Trakulthongchai, "Eleven, twelve, and
@@ -19,6 +31,8 @@ runner to be stationary, as the next full finite-checking case.
 
 Primary sources:
 
+- https://doi.org/10.1007/BF01298332
+- https://doi.org/10.1007/BF01832623
 - https://arxiv.org/abs/2604.23906
 - https://arxiv.org/abs/2609.02604
 - https://doi.org/10.5281/zenodo.22066772

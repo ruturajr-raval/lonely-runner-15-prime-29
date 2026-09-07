@@ -11,6 +11,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 CHECKER = ROOT / "tools" / "check_release_metadata.py"
+VERSION = "0.1.2"
+TAG = f"v{VERSION}"
+VERSION_DOI = "10.5281/zenodo.22647790"
+UNKNOWN_DOI = "10.5281/zenodo.99999998"
 METADATA_FILES = (
     "CITATION.cff",
     "README.md",
@@ -57,12 +61,12 @@ class ReleaseMetadataTests(unittest.TestCase):
     def test_current_metadata_is_consistent(self) -> None:
         completed = self.run_checker(
             ROOT,
-            "v0.1.1",
+            TAG,
             "ruturajr-raval/lonely-runner-15-prime-29",
         )
         self.assertEqual(completed.returncode, 0, completed.stderr)
         self.assertIn(
-            "release metadata consistent for v0.1.1",
+            f"release metadata consistent for {TAG}",
             completed.stdout,
         )
 
@@ -74,7 +78,7 @@ class ReleaseMetadataTests(unittest.TestCase):
     def test_wrong_repository_is_rejected(self) -> None:
         completed = self.run_checker(
             ROOT,
-            "v0.1.1",
+            TAG,
             "ruturajr-raval/lonely-runner-15-research-workbench",
         )
         self.assertNotEqual(completed.returncode, 0)
@@ -122,7 +126,7 @@ class ReleaseMetadataTests(unittest.TestCase):
             path = root / "README.md"
             path.write_text(
                 path.read_text(encoding="utf-8")
-                + "\n10.5281/zenodo.22539842\n",
+                + f"\n{UNKNOWN_DOI}\n",
                 encoding="utf-8",
             )
             completed = self.run_checker(root)
@@ -135,7 +139,7 @@ class ReleaseMetadataTests(unittest.TestCase):
             self.copy_metadata(root)
             path = root / ".zenodo.json"
             metadata = json.loads(path.read_text(encoding="utf-8"))
-            metadata["description"] += " 10.5281/zenodo.22539842"
+            metadata["description"] += f" {UNKNOWN_DOI}"
             path.write_text(
                 json.dumps(metadata, indent=2) + "\n",
                 encoding="utf-8",
@@ -153,7 +157,7 @@ class ReleaseMetadataTests(unittest.TestCase):
             self.copy_metadata(root)
             path = root / ".release-record.json"
             metadata = json.loads(path.read_text(encoding="utf-8"))
-            metadata["version_doi"] = "10.5281/zenodo.99999999"
+            metadata["status"] = "published"
             metadata["release_commit"] = None
             path.write_text(
                 json.dumps(metadata, indent=2) + "\n",
@@ -171,7 +175,7 @@ class ReleaseMetadataTests(unittest.TestCase):
             text = path.read_text(encoding="utf-8")
             path.write_text(
                 text.replace(
-                    "10.5281/zenodo.22541517",
+                    VERSION_DOI,
                     "10.5281/zenodo.00000000",
                     1,
                 ),
@@ -185,7 +189,7 @@ class ReleaseMetadataTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             self.copy_metadata(root)
-            version_doi = "10.5281/zenodo.99999999"
+            version_doi = VERSION_DOI
             release_commit = "a" * 40
             asset_hashes = {
                 name: f"{index + 1:064x}"
@@ -198,13 +202,13 @@ class ReleaseMetadataTests(unittest.TestCase):
                     )
                 )
             }
-            archive_name = "test-v0.1.1.zip"
+            archive_name = "test-v0.1.2.zip"
             archive_sha256 = "f" * 64
             record_path = root / ".release-record.json"
             record = json.loads(record_path.read_text(encoding="utf-8"))
             record.update(
                 {
-                    "version_doi": version_doi,
+                    "status": "published",
                     "release_commit": release_commit,
                     "assets": asset_hashes,
                     "zenodo_archive": {
@@ -218,30 +222,10 @@ class ReleaseMetadataTests(unittest.TestCase):
                 json.dumps(record, indent=2) + "\n",
                 encoding="utf-8",
             )
-            citation = root / "CITATION.cff"
-            citation.write_text(
-                citation.read_text(encoding="utf-8").replace(
-                    "10.5281/zenodo.22541517",
-                    version_doi,
-                ),
-                encoding="utf-8",
-            )
-            for relative in (
-                "README.md",
-                "PUBLICATION.md",
-                "paper/ARXIV_METADATA.md",
-            ):
-                path = root / relative
-                path.write_text(
-                    path.read_text(encoding="utf-8").replace(
-                        "10.5281/zenodo.22541517",
-                        version_doi,
-                    ),
-                    encoding="utf-8",
-                )
             publication = root / "PUBLICATION.md"
             lines = [
                 f"- Version DOI: `{version_doi}`",
+                "- Release status: `published`",
                 f"- Release commit: `{release_commit}`",
                 *(
                     f"- `{name}`: `{digest}`"

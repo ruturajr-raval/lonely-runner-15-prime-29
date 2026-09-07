@@ -1,4 +1,4 @@
-# Release v0.1.1
+# Release v0.1.2
 
 ## Release Identity
 
@@ -8,12 +8,12 @@
 | Author | Ruturaj R Raval |
 | Affiliation | Independent Researcher |
 | ORCID | [0000-0003-4930-8981](https://orcid.org/0000-0003-4930-8981) |
-| Tagged release | [`v0.1.1`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.1) |
-| Release date | 2026-09-06 |
-| Audited release commit | `bfc58364d975a862153307766386b51fe8289e57` |
-| Version DOI | [`10.5281/zenodo.22541517`](https://doi.org/10.5281/zenodo.22541517) |
+| Tagged release | [`v0.1.2`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.2) |
+| Release date | 2026-09-07 |
+| Release commit | Pending - no commit or tag was created while preparing this patch |
+| Version DOI | [`10.5281/zenodo.22647790`](https://doi.org/10.5281/zenodo.22647790) |
 | Concept DOI | [`10.5281/zenodo.22539841`](https://doi.org/10.5281/zenodo.22539841) |
-| Archive status | Published 110-file Zenodo snapshot matching the release tag |
+| Archive status | Local paper-inclusive release set prepared; GitHub and Zenodo publication pending |
 | License | MIT for project-original material |
 
 ## Background
@@ -47,7 +47,17 @@ DRAT-trim and `rate` both accept the proof.
 
 The combined result closes the prime-29 finite-checking gate.
 
-## Correction Scope
+## Patch Scope
+
+Version `v0.1.2` is an archival and documentation patch. It adds an
+explicitly named compiled report PDF, a deterministic report-source archive,
+and `SHA256SUMS` to the archival release set. The selected certificate,
+proof objects, data, and computations are unchanged. The certificate archive
+is regenerated with the current replay README, so its packaging documentation
+is refreshed without changing the certificate payload.
+
+The theorem, proof, certificate, data, computations, exact solver outputs,
+CNF, DRAT proof, and claim boundary are unchanged from `v0.1.1`.
 
 Version `v0.1.1` corrects overview wording from "every level-15 lift" to
 "every improper level-15 lift." The formal lemma, proof, certificate, data,
@@ -86,28 +96,37 @@ verify the release manifest with:
 shasum -a 256 -c SHA256SUMS
 ```
 
+From a repository checkout, `make release-verify` additionally checks that
+the release directory is closed and that every asset matches
+`.release-record.json`.
+
 ## Release And Archive
 
 - Public repository:
   `https://github.com/ruturajr-raval/lonely-runner-15-prime-29`
-- GitHub release:
-  `https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.1`
-- Version DOI: `10.5281/zenodo.22541517`
+- Release identity:
+  `https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.2`
+- Version DOI: `10.5281/zenodo.22647790`
+- Release status: `prepared`
 - Stable concept DOI: `10.5281/zenodo.22539841`
-- Release commit: `bfc58364d975a862153307766386b51fe8289e57`
+- Release commit: `pending`
+- Tagged CI stages and verifies a draft GitHub release. Publication remains
+  an explicit post-verification action.
 
 Release assets:
 
-- `lonely-runner-15-prime-29-paper.pdf`: `57e727d9699db7b154591d0e132e0b7cd449241b1381396a98d62ae2025dc37b`
-- `lonely-runner-15-prime-29-source.tar.gz`: `df671d1a94d3c22481d8fc103e14b768f84a533c24178925b69e445264b8bda5`
-- `lonely-runner-15-prime-29-certificate-v1.tar.gz`: `bc52d11ced8082405fa2a428a0fb605b7c0aefa7cfaa013f104fddaa86777c39`
-- `SHA256SUMS`: `1e2343e5b22e22bc404b0e1ffe25563a0cfc81827f2b16790ca70ee0f7582d1d`
+- `lonely-runner-15-prime-29-paper.pdf`: `b49620aa4c530b67fa95b94b114cd99d5b1f97969fecafc4567eab0c5cb93e9c`
+- `lonely-runner-15-prime-29-source.tar.gz`: `e234baed75493fefce83600b01e0b2da758b4dfd2b6cfeff855d170a9bcb0cec`
+- `lonely-runner-15-prime-29-certificate-v1.tar.gz`: `70bb4a809015e348cefdf7cb252f4aa929865af40fac665d78fb4016664dafcf`
+- `SHA256SUMS`: `f60ba896a637dcd9b568fa5abaefee8c2e277b6c29ed6a99c4ee27b3ccc09bd1`
 
-- Zenodo archive: `ruturajr-raval/lonely-runner-15-prime-29-v0.1.1.zip`
-- Zenodo archive SHA-256: `8e9a463dd95acb8a40f927583230bc8140e6139b479fd59059d98a27adebcd72`
-- Archived file count: `110`
+- Zenodo archive: `pending`
 
-All 110 archived files match the immutable `v0.1.1` tag tree byte for byte.
+The prior `v0.1.1` archive remains available at version DOI
+`10.5281/zenodo.22541517`; its 110 files matched release commit
+`bfc58364d975a862153307766386b51fe8289e57` byte for byte. The new `v0.1.2`
+Zenodo draft `10.5281/zenodo.22647790` is reserved and has been inspected.
+No files have been uploaded and the draft has not been published.
 
 ## Provenance Boundary
 
@@ -119,10 +138,10 @@ revisions are bound in the certificate provenance.
 
 ## Review Status
 
-The release passed theorem-scope, exact-solver, CNF, dual proof-checker,
-source-binding, mutation, manuscript, and release-metadata review. The full
-tagged replay rebuilds and checks the selected certificate from its recorded
-sources. No external mathematical or peer review is claimed.
+The mathematical release passed theorem-scope, exact-solver, CNF, dual
+proof-checker, source-binding, mutation, manuscript, and release-metadata
+review. The `v0.1.2` local paper and release assets are verified separately
+before publication. No external mathematical or peer review is claimed.
 
 ## What Is Not Claimed
 
@@ -162,14 +181,14 @@ that threshold.
 
 ## Public Summary
 
-Release `v0.1.1` proves `J(14,29) = empty`, closing the prime-29
-finite-checking gate for fifteen total runners. Two independently written
-exact solvers reject the coprime branch, and a DRAT proof accepted by
-DRAT-trim and `rate` rejects the noncoprime branch. This closes one prime gate
-and does not prove the full fifteen-runner Lonely Runner Conjecture.
+Release `v0.1.2` is a paper-inclusive archival and documentation patch for
+the theorem `J(14,29) = empty`. It adds an explicit compiled PDF,
+deterministic source archive, and checksums while leaving the theorem, proof,
+certificate, data, and computations unchanged. The result closes one prime
+gate and does not prove the full fifteen-runner Lonely Runner Conjecture.
 
 ## Citation
 
-Citation metadata is in `CITATION.cff`. Cite release `v0.1.1` using version
-DOI `10.5281/zenodo.22541517`.
+Citation metadata is in `CITATION.cff`. Cite the paper-inclusive `v0.1.2`
+archival patch using version DOI `10.5281/zenodo.22647790`.
 Historical release scope is summarized in `RELEASE_NOTES.md`.

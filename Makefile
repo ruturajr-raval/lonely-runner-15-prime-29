@@ -1,8 +1,8 @@
 LATEXMK ?= latexmk
-SOURCE_DATE_EPOCH ?= 1788652800
+SOURCE_DATE_EPOCH ?= 1788739200
 TECTONIC ?= tectonic
 
-.PHONY: certificate-bundle certificate-fast paper-build paper-bundle release-assets release-checksums release-metadata rust-verifier smoke terminal-solver test
+.PHONY: certificate-bundle certificate-fast paper-build paper-bundle release-assets release-checksums release-metadata release-verify rust-verifier smoke terminal-solver test
 
 test:
 	python3 -m unittest discover -s tests -v
@@ -40,6 +40,7 @@ release-metadata:
 		$(if $(REPOSITORY),--repository "$(REPOSITORY)",)
 
 release-assets: test certificate-fast release-metadata paper-build paper-bundle certificate-bundle
+	rm -rf dist/release
 	mkdir -p dist/release
 	cp build/paper/main.pdf \
 		dist/paper/lonely-runner-15-prime-29-paper.pdf
@@ -47,15 +48,23 @@ release-assets: test certificate-fast release-metadata paper-build paper-bundle 
 		dist/paper/lonely-runner-15-prime-29-source.tar.gz \
 		dist/certificate/lonely-runner-15-prime-29-certificate-v1.tar.gz \
 		dist/release/
-	cd dist/release && shasum -a 256 \
+	cd dist/release && LC_ALL=C shasum -a 256 \
 		lonely-runner-15-prime-29-paper.pdf \
 		lonely-runner-15-prime-29-source.tar.gz \
 		lonely-runner-15-prime-29-certificate-v1.tar.gz \
+		> SHA256SUMS
+	cd dist && LC_ALL=C shasum -a 256 \
+		paper/lonely-runner-15-prime-29-paper.pdf \
+		paper/lonely-runner-15-prime-29-source.tar.gz \
+		certificate/lonely-runner-15-prime-29-certificate-v1.tar.gz \
 		> SHA256SUMS
 
 release-checksums:
 	test -s dist/release/SHA256SUMS
 	cd dist/release && shasum -a 256 -c SHA256SUMS
+
+release-verify:
+	python3 tools/verify_release_assets.py
 
 smoke:
 	python3 tools/run_gate.py --k 2 --prime 5 --pipeline 3

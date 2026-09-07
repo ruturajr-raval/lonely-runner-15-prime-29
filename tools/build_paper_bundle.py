@@ -10,6 +10,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 PAPER_FILES = (
+    "LICENSE",
     "paper/ARXIV_METADATA.md",
     "paper/README.md",
     "paper/RIGHTS.md",

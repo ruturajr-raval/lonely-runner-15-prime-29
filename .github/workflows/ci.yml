@@ -76,6 +76,18 @@ jobs:
           make paper-bundle
           cmp build/source-first.tar.gz \
             dist/paper/lonely-runner-15-prime-29-source.tar.gz
+      - name: Compile from release source bundle
+        run: |
+          mkdir -p build/source-replay build/source-replay-output
+          tar -xzf \
+            dist/release/lonely-runner-15-prime-29-source.tar.gz \
+            -C build/source-replay
+          cd build/source-replay
+          SOURCE_DATE_EPOCH=1788739200 \
+            ../tectonic/tectonic -X compile paper/main.tex \
+              --outdir ../source-replay-output --keep-logs
+          cmp ../source-replay-output/main.pdf \
+            ../../dist/release/lonely-runner-15-prime-29-paper.pdf
       - name: Check deterministic certificate bundle
         run: |
           cp \
@@ -94,7 +106,9 @@ jobs:
           python3 tools/verify_p29_certificate.py \
             --certificate-dir results/p29-level15-certificate-v1
       - name: Check release checksums
-        run: make release-checksums
+        run: |
+          make release-checksums
+          make release-verify
       - name: Upload release assets
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:

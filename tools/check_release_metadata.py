@@ -107,14 +107,18 @@ def main() -> int:
     except (json.JSONDecodeError, OSError) as error:
         errors.append(f".release-record.json: {error}")
         release_record = {}
-    if release_record.get("schema") != 1:
-        errors.append(".release-record.json: schema must be 1")
+    if release_record.get("schema") != 2:
+        errors.append(".release-record.json: schema must be 2")
+    record_status = release_record.get("status")
+    record_release_date = release_record.get("release_date")
     record_version = release_record.get("version")
     record_tag = release_record.get("tag")
     version_doi = release_record.get("version_doi")
+    concept_doi = release_record.get("concept_doi")
     release_commit = release_record.get("release_commit")
     assets = release_record.get("assets")
     archive = release_record.get("zenodo_archive")
+    previous_releases = release_record.get("previous_releases")
 
     if citation_version is not None:
         versions = {
@@ -174,28 +178,53 @@ def main() -> int:
         )
     if release_date is None:
         errors.append("CITATION.cff: release date is invalid")
+    elif record_release_date != release_date:
+        errors.append(
+            ".release-record.json: release_date does not match "
+            "CITATION.cff"
+        )
 
-    archived = version_doi is not None
-    if archived:
-        if not isinstance(version_doi, str) or re.fullmatch(
-            DOI_PATTERN, version_doi
-        ) is None:
-            errors.append(".release-record.json: invalid version_doi")
+    if record_status not in {"prepared", "published"}:
+        errors.append(".release-record.json: invalid status")
+    if not isinstance(version_doi, str) or re.fullmatch(
+        DOI_PATTERN, version_doi
+    ) is None:
+        errors.append(".release-record.json: invalid version_doi")
+    if concept_doi != CONCEPT_DOI:
+        errors.append(".release-record.json: invalid concept_doi")
+    if release_record.get("release_scope") != (
+        "paper_inclusive_archival_documentation_patch"
+    ):
+        errors.append(".release-record.json: invalid release_scope")
+    if release_record.get("mathematical_claim_changed") is not False:
+        errors.append(
+            ".release-record.json: mathematical_claim_changed must be false"
+        )
+    if release_record.get(
+        "proof_certificate_data_or_computations_changed"
+    ) is not False:
+        errors.append(
+            ".release-record.json: proof and computation change flag "
+            "must be false"
+        )
+
+    if not isinstance(assets, dict) or set(assets) != set(EXPECTED_ASSETS):
+        errors.append(".release-record.json: invalid asset set")
+    else:
+        for name in EXPECTED_ASSETS:
+            digest = assets.get(name)
+            if not isinstance(digest, str) or re.fullmatch(
+                SHA256_PATTERN, digest
+            ) is None:
+                errors.append(
+                    f".release-record.json: invalid SHA-256 for {name}"
+                )
+
+    if record_status == "published":
         if not isinstance(release_commit, str) or re.fullmatch(
             COMMIT_PATTERN, release_commit
         ) is None:
             errors.append(".release-record.json: invalid release_commit")
-        if not isinstance(assets, dict) or set(assets) != set(EXPECTED_ASSETS):
-            errors.append(".release-record.json: invalid asset set")
-        else:
-            for name in EXPECTED_ASSETS:
-                digest = assets.get(name)
-                if not isinstance(digest, str) or re.fullmatch(
-                    SHA256_PATTERN, digest
-                ) is None:
-                    errors.append(
-                        f".release-record.json: invalid SHA-256 for {name}"
-                    )
         if not isinstance(archive, dict):
             errors.append(".release-record.json: invalid zenodo_archive")
         else:
@@ -220,18 +249,11 @@ def main() -> int:
                 errors.append(
                     ".release-record.json: invalid archive file_count"
                 )
-    else:
+    elif record_status == "prepared":
         if release_commit is not None:
             errors.append(
                 ".release-record.json: release_commit must be null "
-                "before archival"
-            )
-        if not isinstance(assets, dict) or set(assets) != set(EXPECTED_ASSETS):
-            errors.append(".release-record.json: invalid asset set")
-        elif any(assets.get(name) is not None for name in EXPECTED_ASSETS):
-            errors.append(
-                ".release-record.json: asset hashes must be null "
-                "before archival"
+                "while status is prepared"
             )
         expected_archive = {
             "filename": None,
@@ -241,8 +263,30 @@ def main() -> int:
         if archive != expected_archive:
             errors.append(
                 ".release-record.json: archive fields must be null "
-                "before archival"
+                "while status is prepared"
             )
+
+    previous_dois: set[str] = set()
+    if not isinstance(previous_releases, list):
+        errors.append(".release-record.json: previous_releases must be a list")
+    else:
+        for index, previous in enumerate(previous_releases):
+            if not isinstance(previous, dict):
+                errors.append(
+                    ".release-record.json: invalid previous release "
+                    f"at index {index}"
+                )
+                continue
+            previous_doi = previous.get("version_doi")
+            if not isinstance(previous_doi, str) or re.fullmatch(
+                DOI_PATTERN, previous_doi
+            ) is None:
+                errors.append(
+                    ".release-record.json: invalid previous version DOI "
+                    f"at index {index}"
+                )
+            else:
+                previous_dois.add(previous_doi)
 
     required_dois: dict[str, tuple[Path, tuple[str, ...]]] = {
         "README.md": (
@@ -284,7 +328,7 @@ def main() -> int:
         "PUBLICATION.md": required["publication"],
         "paper/ARXIV_METADATA.md": required["arxiv"],
     }
-    allowed_dois = {CONCEPT_DOI}
+    allowed_dois = {CONCEPT_DOI, *previous_dois}
     if isinstance(version_doi, str):
         allowed_dois.add(version_doi)
     for name, path in release_facing.items():
@@ -293,19 +337,32 @@ def main() -> int:
             if doi not in allowed_dois:
                 errors.append(f"{name}: contains unrecognized Zenodo DOI {doi}")
 
-    if archived and isinstance(assets, dict) and isinstance(archive, dict):
+    if (
+        record_status in {"prepared", "published"}
+        and isinstance(assets, dict)
+        and isinstance(archive, dict)
+    ):
         publication = required["publication"].read_text(encoding="utf-8")
-        expected_lines = (
+        common_lines = (
             f"- Version DOI: `{version_doi}`",
-            f"- Release commit: `{release_commit}`",
+            f"- Release status: `{record_status}`",
             *(
                 f"- `{name}`: `{assets.get(name)}`"
                 for name in EXPECTED_ASSETS
             ),
-            f"- Zenodo archive: `{archive.get('filename')}`",
-            f"- Zenodo archive SHA-256: `{archive.get('sha256')}`",
-            f"- Archived file count: `{archive.get('file_count')}`",
         )
+        if record_status == "published":
+            expected_lines = common_lines + (
+                f"- Release commit: `{release_commit}`",
+                f"- Zenodo archive: `{archive.get('filename')}`",
+                f"- Zenodo archive SHA-256: `{archive.get('sha256')}`",
+                f"- Archived file count: `{archive.get('file_count')}`",
+            )
+        else:
+            expected_lines = common_lines + (
+                "- Release commit: `pending`",
+                "- Zenodo archive: `pending`",
+            )
         for line in expected_lines:
             if line not in publication:
                 errors.append(

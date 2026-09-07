@@ -1,7 +1,7 @@
 {
   "title": "A Level-15 Certificate for the Prime-29 Gate in the Fifteen-Runner Lonely Runner Problem",
   "upload_type": "software",
-  "description": "Technical report, exact certificate data, and verification software proving J(14,29) is empty. Every improper level-15 lift of the unique level-one improper orbit is equivalent to a lift in a coprime or noncoprime symmetry branch. Two independently written exact solvers exclude all thirteen coprime coordinate-zero cases. A 210-variable, 1,842-clause CNF and a DRAT proof accepted by DRAT-trim and rate exclude the noncoprime branch. The result closes the prime-29 finite-checking gate for fifteen total runners. It contributes log(29) to the required prime mass and does not prove the full fifteen-runner Lonely Runner Conjecture. Version 0.1.1 corrects overview wording without changing the theorem, proof, certificate, data, or computational results.",
+  "description": "Technical report, exact certificate data, and verification software proving J(14,29) is empty. Every improper level-15 lift of the unique level-one improper orbit is equivalent to a lift in a coprime or noncoprime symmetry branch. Two independently written exact solvers exclude all thirteen coprime coordinate-zero cases. A 210-variable, 1,842-clause CNF and a DRAT proof accepted by DRAT-trim and rate exclude the noncoprime branch. The result closes the prime-29 finite-checking gate for fifteen total runners. It contributes log(29) to the required prime mass and does not prove the full fifteen-runner Lonely Runner Conjecture. Version 0.1.2 is an archival and documentation patch adding an explicit compiled report PDF, a deterministic source bundle, and a checksum manifest. The theorem, proof, certificate, data, and computations are unchanged.",
   "creators": [
     {
       "name": "Raval, Ruturaj R",
@@ -19,5 +19,5 @@
     "DRAT",
     "reproducible research"
   ],
-  "version": "0.1.1"
+  "version": "0.1.2"
 }

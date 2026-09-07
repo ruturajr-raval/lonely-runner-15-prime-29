@@ -4,8 +4,6 @@
 
 ## Project Overview
 
-### Project Metadata
-
 | Field | Value |
 | --- | --- |
 | Author | Ruturaj R Raval |
@@ -15,84 +13,10 @@
 | Problem | Close finite-checking prime gates toward `LRC(14)` for fifteen total runners |
 | Current result | Exact theorem `J(14,29) = empty` |
 | Result type | Complete prime-29 finite-checking gate theorem |
-| Release | `v0.1.1` |
-| Version DOI | `10.5281/zenodo.22541517` |
-| Concept DOI | `10.5281/zenodo.22539841` |
+| Release | `v0.1.2` |
+| Version DOI | [10.5281/zenodo.22647790](https://doi.org/10.5281/zenodo.22647790) |
+| Concept DOI | [10.5281/zenodo.22539841](https://doi.org/10.5281/zenodo.22539841) |
 | License | MIT for project-original material |
-
-### Problem And Context
-
-The Lonely Runner Conjecture asks whether, for distinct nonzero integer
-speeds, there exists one time at which every moving runner is simultaneously
-at distance at least `1/(k+1)` from the origin after one runner is fixed. The
-underlying problem dates to Wills's 1967 work and Cusick's 1973
-view-obstruction formulation, so the general conjecture has remained open for
-nearly six decades. The case of fifteen total runners is the next
-finite-checking target after the published 2026 fourteen-runner work. A
-complete proof through this framework requires closed prime gates whose
-logarithmic mass exceeds `log B_14 = 810.0739811140556`; that full case
-remains open.
-
-### Work And Verified Outcome
-
-At prime 29, the project proves that the unique level-one improper orbit is
-represented by `(1,2,...,14)`. Every improper level-15 lift enters one of two
-exhaustive symmetry branches. A factor-15 CRT reduction and independently
-written C++ and Rust exact solvers reject all thirteen coprime cases. A
-210-variable CNF and a checked DRAT proof reject the noncoprime branch.
-Therefore `J(14,29) = empty`.
-
-### Claim Boundary
-
-The prime-29 gate is closed. The project does not prove the full
-fifteen-runner conjecture, close another prime gate, reach the finite-checking
-threshold, or claim completed external mathematical review. Release `v0.1.1`
-corrects wording only; its theorem, proof, certificate, data, and
-computational results are unchanged from `v0.1.0`.
-
-### Verification And Reproduction
-
-The selected certificate contains exact source snapshots, a Git bundle,
-twenty-six coprime transcripts, the noncoprime CNF and DRAT proof, two
-independent DRAT-checker logs, manifests, and mutation-tested replay tools.
-Fast integrity checks and a complete local replay are available through the
-commands documented below, with a separate hosted workflow as a public replay
-record. Fast checks require Python 3 and ordinary workstation resources. The
-recorded `v0.1.1` complete-certificate step took about 34 minutes on a standard
-public `ubuntu-latest` runner with 4 vCPUs and 16 GB of RAM. This is a capacity
-reference rather than a measured peak-memory requirement; local runtime scales
-with hardware and the requested worker count.
-
-### Significance, Limitations, And Future Work
-
-Prime 29 contributes `log(29) = 3.367295829986474`, about 0.41568 percent of
-the required threshold. The result supplies a complete reusable gate
-certificate, but much more prime mass remains. The strongest next route is to
-apply the factor-15 CRT method to additional primes and accumulate
-independently checked closed-gate mass.
-
-### Release, Citation, And Author
-
-The public repository is
-[`ruturajr-raval/lonely-runner-15-prime-29`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29).
-The immutable tagged release is
-[`v0.1.1`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.1)
-at audited release commit
-`bfc58364d975a862153307766386b51fe8289e57`.
-It is archived at version DOI `10.5281/zenodo.22541517`; the stable
-all-versions DOI is `10.5281/zenodo.22539841`. The Zenodo snapshot contains
-110 files, all checked byte for byte against the release tag tree. GitHub and
-Zenodo are the current dissemination baseline; no preprint-server deposit or
-external mathematical review is claimed.
-
-The next result gate is a second exact prime-gate theorem, or a theorem that
-closes a stated family of gates, with source-bound evidence and independent
-replay. Project-original material is MIT-licensed. The finite-checking
-framework is attributed to the cited papers and independently implemented
-here; external SAT and proof-checking tools retain their own licenses.
-Citation metadata is in `CITATION.cff`, and release history is in
-`RELEASE_NOTES.md`. The author is Ruturaj R Raval, Independent Researcher,
-ORCID `0000-0003-4930-8981`.
 
 This repository proves
 
@@ -101,57 +25,47 @@ J(14,29) = empty.
 ```
 
 Equivalently, it closes the prime-29 finite-checking gate for the Lonely
-Runner Conjecture with fifteen total runners, after one runner is fixed to be
-stationary.
+Runner Conjecture with fifteen total runners after one runner is fixed to be
+stationary. The result is a rigorous component of the finite-checking program
+for the next open case. It does not prove the full fifteen-runner conjecture.
 
-The result is a rigorous component of the finite-checking program for the
-next open case. It does not prove the full fifteen-runner conjecture.
+## Problem And Background
 
-Release `v0.1.1` corrects the scope wording in the overview and report
-abstract without changing the theorem, proof, certificate, data, or
-computational results. It is archived at version DOI
-`10.5281/zenodo.22541517`. All archived versions are collected under the
-stable concept DOI `10.5281/zenodo.22539841`.
-
-## Origin And History
-
-The underlying Diophantine approximation problem appeared in J. M. Wills's
-1967 work and was independently formulated through T. W. Cusick's 1973
-view-obstruction problem. The runner interpretation and the name "Lonely
-Runner Conjecture" came later. The general problem has therefore remained
-open for nearly six decades.
-
-The modern finite-checking framework was developed by Sungkawichai and
-Trakulthongchai for eleven, twelve, and thirteen total runners. Allikvere
-subsequently reported a computer-assisted proof for fourteen total runners
-with a public verification archive. This leaves fifteen total runners,
-written `LRC(14)` after fixing one runner to be stationary, as the next full
-finite-checking case. The dated frontier and novelty audit are recorded in
-[`docs/PRIOR_ART.md`](docs/PRIOR_ART.md).
-
-## Background
+The Lonely Runner Conjecture asks whether, for distinct nonzero integer
+speeds, there exists a time at which every moving runner is simultaneously at
+distance at least `1/(k+1)` from the origin after one runner is fixed.
 
 For a prime `p`, a level-one tuple belongs to the eventual-improper set
 `J(k,p)` when every finite lifting level contains at least one improper lift,
 where `k` is the number of moving runners. Proving `J(k,p) = empty` closes one
-prime gate.
+prime gate in the modern finite-checking framework.
 
-The published 2026 finite-checking reports cover the conjecture through
-fourteen total runners. The next case has `k = 14`, and a complete
-finite-checking proof requires enough closed prime gates that their
-logarithmic mass exceeds the threshold
+For fifteen total runners, fixing one runner as stationary leaves `k = 14`
+moving runners. A complete finite-checking proof requires enough closed prime
+gates that their logarithmic mass exceeds
 
 ```text
 log B_14 = 810.0739811140556.
 ```
 
-The prime-29 gate contributes
+## Starting Frontier And Longstanding Gap
 
-```text
-log(29) = 3.367295829986474,
-```
+The underlying Diophantine approximation problem appeared in J. M. Wills's
+1967 work and was independently formulated through T. W. Cusick's 1973
+view-obstruction problem. The runner interpretation and the name "Lonely
+Runner Conjecture" came later. The general problem has remained open for
+nearly six decades.
 
-or about 0.41568 percent of that threshold.
+Sungkawichai and Trakulthongchai developed the modern finite-checking
+framework for eleven, twelve, and thirteen total runners. Allikvere
+subsequently reported a computer-assisted proof for fourteen total runners
+with a public verification archive. This leaves fifteen total runners,
+written `LRC(14)` after fixing one runner to be stationary, as the next full
+finite-checking case.
+
+At the start of this project, the prime-29 gate for `k = 14` had not been
+closed in the audited public literature. The dated frontier and novelty audit
+are recorded in [`docs/PRIOR_ART.md`](docs/PRIOR_ART.md).
 
 ## Main Result
 
@@ -164,24 +78,86 @@ once. Up to permutation and signs, the unique level-one improper tuple is
 ```
 
 Every improper level-15 lift of this tuple is equivalent to a lift in one of
-two exhaustive symmetry branches.
+two exhaustive symmetry branches:
 
-- In the coprime branch, a CRT reduction forces one of coordinates 2 through
-  14 to have residue zero modulo 15. Two separately written exact solvers,
-  one in C++ and one in Rust, reject all thirteen coordinate-zero cases.
-- In the noncoprime branch, a 210-variable, 1,842-clause CNF is unsatisfiable.
-  Kissat produced a 368,542-byte DRAT proof accepted independently by
-  DRAT-trim and `rate`.
+- In the coprime branch, a factor-15 CRT reduction forces one of coordinates
+  2 through 14 to have residue zero modulo 15. Two separately written exact
+  solvers, one in C++ and one in Rust, reject all thirteen coordinate-zero
+  cases.
+- In the noncoprime branch, a 210-variable, 1,842-clause CNF is
+  unsatisfiable. Kissat produced a 368,542-byte DRAT proof accepted
+  independently by DRAT-trim and `rate`.
 
-The two branches contain no improper level-15 lift, so the unique level-one
-orbit is eventually proper and `J(14,29)` is empty.
+The two branches contain no improper level-15 lift. The unique level-one
+orbit is therefore eventually proper, proving
 
-The complete theorem and reduction are in
+```text
+J(14,29) = empty.
+```
+
+The project-original theorem is this prime-29 gate closure and its checked
+level-15 reduction. The finite-checking framework and earlier closed gates
+are prior work and are used only as the surrounding program.
+
+The complete reduction and theorem are in
 [`docs/P29_LEVEL15_THEOREM.md`](docs/P29_LEVEL15_THEOREM.md).
+
+## Method And Proof Architecture
+
+The proof separates the finite mathematical reduction from independent
+computational checks:
+
+- Folded speed and time classes identify the unique level-one improper orbit.
+- Permutation and sign symmetries reduce all level-15 lifts to two exhaustive
+  branches.
+- A factor-15 Chinese remainder theorem reduction converts the coprime branch
+  into thirteen exact coordinate-zero cases.
+- Independent C++ and Rust implementations exhaust all thirteen cases.
+- A deterministic generator produces the noncoprime 210-variable,
+  1,842-clause CNF.
+- Kissat supplies a DRAT proof, and two independent proof checkers validate
+  it.
+- A source-bound certificate links source snapshots, transcripts, CNF,
+  proof, checker logs, and manifests to the declared source commit.
+
+The mathematical claim depends on the archived finite reduction and checked
+certificate. It does not depend on an unchecked SAT status, a hosted service,
+or an unpublished binary.
+
+## Verification And Evidence
+
+The selected certificate is
+[`results/p29-level15-certificate-v1`](results/p29-level15-certificate-v1).
+Its top-level manifest binds every included artifact by SHA-256 and records
+the source commit used for all original runs.
+
+The certificate contains:
+
+- exact source snapshots for both coprime solvers;
+- a Git object bundle binding those snapshots to the declared source commit;
+- thirteen C++ and thirteen Rust UNSAT transcripts;
+- the exact noncoprime CNF and DRAT proof;
+- logs from DRAT-trim and `rate`;
+- source snapshots for the noncoprime generator;
+- manifests and a standalone verifier with fail-closed mutation tests.
+
+Fast integrity checks and a complete local replay are available, with a
+separate hosted workflow serving as a public replay record. Fast checks
+require Python 3 and ordinary workstation resources. Independent C++ and
+Rust implementations reject all thirteen coprime cases, while DRAT-trim and
+`rate` independently check the noncoprime proof.
+
+The recorded `v0.1.1` complete-certificate step took about 34 minutes on a
+standard public `ubuntu-latest` runner with 4 vCPUs and 16 GB of RAM. This is
+a capacity reference rather than a measured peak-memory requirement. Local
+runtime scales with hardware and the requested worker count.
+
+The trust boundary and replay procedure are documented in
+[`docs/CERTIFICATE.md`](docs/CERTIFICATE.md).
 
 ## Reproduction
 
-Run the test suite and the fast certificate verifier:
+Run the test suite and fast certificate verifier:
 
 ```bash
 make test
@@ -221,9 +197,14 @@ python3 tools/verify_p29_certificate.py \
   --jobs 4
 ```
 
-The fast mode verifies integrity, exact claims, level-one generation, CRT
+Fast mode verifies integrity, exact claims, level-one generation, CRT
 identities, all logs, and the reconstructed noncoprime CNF. It does not
-replace the DRAT replay or the long coprime reruns.
+replace DRAT replay or the long coprime reruns.
+
+Fast verification is CPU-bound, uses no GPU, and fits an ordinary
+workstation. The complete replay is substantially longer: the recorded
+hosted run used 4 vCPUs and 16 GB of RAM and completed its certificate stage
+in about 34 minutes.
 
 GitHub release downloads include `SHA256SUMS`. Place the PDF, source archive,
 certificate archive, and checksum file in one directory, then run:
@@ -232,27 +213,94 @@ certificate archive, and checksum file in one directory, then run:
 shasum -a 256 -c SHA256SUMS
 ```
 
-## Evidence
+## Claims
 
-The selected certificate is
-[`results/p29-level15-certificate-v1`](results/p29-level15-certificate-v1).
-Its top-level manifest binds every included artifact by SHA-256 and records
-the source commit used for all original runs.
+This project claims:
 
-The evidence includes:
+- the unique level-one improper orbit for `k = 14`, `p = 29`;
+- the exhaustive coprime and noncoprime symmetry split at level 15;
+- exact exclusion of all thirteen coprime coordinate-zero cases by both
+  independent implementations;
+- a checked DRAT exclusion of the noncoprime branch;
+- the theorem `J(14,29) = empty`.
 
-- exact source snapshots for both coprime solvers;
-- a Git object bundle binding those snapshots to the declared source commit;
-- thirteen C++ and thirteen Rust UNSAT transcripts;
-- the exact noncoprime CNF and DRAT proof;
-- logs from two independent DRAT checkers;
-- source snapshots for the noncoprime generator;
-- a standalone verifier with fail-closed mutation tests.
+The complete human-readable claim boundary is maintained in
+[`docs/CLAIMS.md`](docs/CLAIMS.md), with machine-readable claims in
+[`research/claim.yaml`](research/claim.yaml).
 
-See [`docs/CERTIFICATE.md`](docs/CERTIFICATE.md) for the trust boundary and
-replay procedure.
+## Limitations And Nonclaims
 
-## Evidence And Repository Map
+This project does not claim:
+
+- a proof of the full fifteen-runner conjecture or `LRC(14)`;
+- closure of any prime gate other than 29;
+- that the current gate mass reaches the finite-checking threshold;
+- completed external mathematical review;
+- priority over unpublished or unindexed work.
+
+Release `v0.1.1` corrects scope wording in the overview and report abstract.
+Its theorem, proof, certificate, data, and computational results are
+unchanged from `v0.1.0`.
+
+Release `v0.1.2` is an archival and documentation patch. It adds an
+explicitly named compiled PDF, a deterministic report-source archive, and a
+checksum manifest. The theorem, proof, certificate, data, computations, and
+claim boundary are unchanged from `v0.1.1`.
+
+No arXiv or HAL deposit is currently part of the publication record. Any
+public summary must state both `J(14,29) = empty` and the nonclaim that the
+full `LRC(14)` problem remains open.
+
+## Significance And Use
+
+Prime 29 contributes
+
+```text
+log(29) = 3.367295829986474,
+```
+
+which is about 0.41568 percent of the required finite-checking threshold.
+This is a complete, reusable, independently checkable prime-gate theorem for
+the next full runner case.
+
+The repository can be used to:
+
+- reproduce the prime-29 finite reduction and exact gate theorem;
+- replay both independent coprime implementations;
+- regenerate and verify the noncoprime CNF and DRAT proof;
+- test certificate integrity and provenance mutations;
+- reuse the factor-15 CRT method for additional prime gates;
+- accumulate independently checked closed-gate mass toward `LRC(14)`.
+
+## Remaining Work And Future Directions
+
+The strongest next route is to apply the factor-15 CRT method to additional
+primes and accumulate enough independently checked closed-gate mass to exceed
+`log B_14 = 810.0739811140556`. A theorem closing a family of prime gates
+could accelerate that program.
+
+Future results must pass these acceptance gates:
+
+1. **Additional prime gate.** A further prime may be announced only after an
+   exact gate theorem, complete source-bound artifacts, deterministic
+   integrity checks, a compact checked proof or two independently implemented
+   exhaustive replays, mutation tests, and a refreshed prior-art audit.
+2. **Prime-family theorem.** A result closing a family of primes must state
+   the exact arithmetic hypotheses, prove that every covered prime satisfies
+   them, and provide independently checkable evidence for every finite
+   computation used by the reduction.
+3. **Full finite-checking gate.** A proof of `LRC(14)` may be claimed only
+   after the independently verified closed-gate mass exceeds
+   `log B_14 = 810.0739811140556`, or after a separate theorem replaces that
+   threshold requirement.
+4. **Rejected evidence.** Timeouts, unchecked SAT statuses, faster
+   implementations, and larger but incomplete searches do not pass a
+   mathematical result gate.
+
+Ranked next routes and acceptance standards are maintained in
+[`docs/RESEARCH_PLAN.md`](docs/RESEARCH_PLAN.md).
+
+## Repository Layout
 
 | Path | Purpose and trust boundary |
 | --- | --- |
@@ -268,77 +316,61 @@ replay procedure.
 | [`docs/RESEARCH_PLAN.md`](docs/RESEARCH_PLAN.md) | Ranked next routes and acceptance standard for further gates |
 | [`paper/main.tex`](paper/main.tex) | Technical report source |
 | [`PUBLICATION.md`](PUBLICATION.md) | Release result, correction scope, assets, archive, and nonclaims |
-| [`.release-record.json`](.release-record.json) | Immutable release identity, asset hashes, and Zenodo archive record |
+| [`.release-record.json`](.release-record.json) | Current release identity, local asset hashes, prior release history, and publication state |
 
-## Claim Boundary
+## Publication Citation And Archive
 
-This project claims:
+The public repository is
+[`ruturajr-raval/lonely-runner-15-prime-29`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29).
+The paper-inclusive archival patch is identified as
+[`v0.1.2`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.2).
+Its release set contains the compiled report PDF, deterministic report-source
+archive, a regenerated archive of the unchanged selected certificate, and
+`SHA256SUMS`. The
+[technical report source](paper/main.tex) is maintained in the repository.
 
-- the unique level-one improper orbit for `k = 14`, `p = 29`;
-- the exhaustive coprime and noncoprime symmetry split at level 15;
-- exact exclusion of all thirteen coprime coordinate-zero cases by both
-  implementations;
-- a checked DRAT exclusion of the noncoprime branch;
-- the theorem `J(14,29) = empty`.
+Release `v0.1.2` uses version DOI
+[10.5281/zenodo.22647790](https://doi.org/10.5281/zenodo.22647790), while
+[10.5281/zenodo.22539841](https://doi.org/10.5281/zenodo.22539841) is the
+stable concept DOI for all versions.
 
-It does not claim:
+The prior `v0.1.1` archive remains the historical scope-correction release.
+Version `v0.1.2` changes archival packaging and documentation only.
 
-- a proof of `LRC(14)`;
-- closure of any prime gate other than 29;
-- that the current gate mass reaches the finite-checking threshold;
-- an independent external mathematical review;
-- priority over unpublished or unindexed work.
+GitHub and Zenodo are the current dissemination baseline. No preprint-server
+deposit or external peer review is claimed. The machine-readable files under
+`research/` were added after the protected release. They summarize the
+released claim but are not part of the immutable 110-file `v0.1.1` archive.
 
-The dated public-source audit is in
-[`docs/PRIOR_ART.md`](docs/PRIOR_ART.md).
+Citation metadata is in [`CITATION.cff`](CITATION.cff), release history is in
+[`RELEASE_NOTES.md`](RELEASE_NOTES.md), and the complete release record is in
+[`PUBLICATION.md`](PUBLICATION.md). Cite the paper-inclusive `v0.1.2`
+archival patch using version DOI `10.5281/zenodo.22647790`.
 
-## Future Acceptance Gates
+## Authorship
 
-1. **Additional prime gate.** A further prime may be announced only after an
-   exact gate theorem, complete source-bound artifacts, deterministic
-   integrity checks, a compact checked proof or two independently implemented
-   exhaustive replays, mutation tests, and a refreshed prior-art audit.
-2. **Prime-family theorem.** A result closing a family of primes must state
-   the exact arithmetic hypotheses, prove that every covered prime satisfies
-   them, and provide independently checkable evidence for any finite
-   computation used by the reduction.
-3. **Full finite-checking gate.** A proof of `LRC(14)` may be claimed only
-   after the independently verified closed-gate mass exceeds
-   `log B_14 = 810.0739811140556`, or after a separate theorem replaces that
-   threshold requirement.
-4. **Rejected evidence.** Timeouts, unchecked SAT statuses, faster
-   implementations, and larger but incomplete searches do not pass a
-   mathematical result gate.
+Ruturaj R Raval, Independent Researcher
 
-## Dissemination Status
+ORCID: [0000-0003-4930-8981](https://orcid.org/0000-0003-4930-8981)
 
-Release `v0.1.1`, the technical report, source archive, complete selected
-certificate, and checksum manifest are public through GitHub. Zenodo supplies
-the immutable version archive and DOI. Version `v0.1.1` changes wording only
-and supersedes `v0.1.0` for scope accuracy. No arXiv or HAL deposit is
-currently part of the publication record, and no external peer review is
-claimed. Any public summary must state both `J(14,29) = empty` and the
-nonclaim that the full `LRC(14)` problem remains open.
-The machine-readable files under `research/` are maintained-main
-documentation added after the protected release; they summarize the released
-claim but are not part of the immutable 110-file `v0.1.1` archive.
-
-## License And Provenance
+## Licensing And Provenance
 
 Project-original source, documentation, certificate assembly, and report
 material are released under the MIT License. The finite-checking definitions
 and earlier runner results are taken from the cited mathematical literature
-with attribution; their implementation here is independent. No source code
-from the cited unlicensed research repositories is copied.
+with attribution and independently implemented here. No source code from the
+cited unlicensed research repositories is copied.
 
 Kissat generated the noncoprime proof, while DRAT-trim and `rate` checked it.
-Those external tools are not project-original and remain under their
+These external tools are not project-original and remain under their
 respective upstream terms. Their exact revisions are recorded in the
-certificate provenance. The mathematical claim depends on the archived CNF,
-DRAT proof, accepted checker logs, exact source snapshots, and replayable
-certificate rather than on a hosted service or an unpublished binary.
+certificate provenance.
 
-## Primary References
+The mathematical claim depends on the archived CNF, DRAT proof, accepted
+checker logs, exact source snapshots, and replayable certificate rather than
+on a hosted service or an unpublished binary.
+
+## References
 
 - J. M. Wills, [Zwei Satze uber inhomogene diophantische Approximation von
   Irrationalzahlen](https://doi.org/10.1007/BF01298332),
@@ -354,15 +386,3 @@ certificate rather than on a hosted service or an unpublished binary.
 - J. Allikvere,
   [Verification archive for Fourteen lonely runners](https://zenodo.org/records/22066772),
   Zenodo, 2026.
-
-## Citation
-
-Citation metadata is in `CITATION.cff`. Cite release `v0.1.1` using version
-DOI `10.5281/zenodo.22541517`. The stable all-versions DOI is
-`10.5281/zenodo.22539841`. The technical report source is under `paper/`.
-
-## Author
-
-Ruturaj R Raval  
-Independent Researcher  
-ORCID: 0000-0003-4930-8981

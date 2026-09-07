@@ -1,4 +1,32 @@
-# v0.1.1
+# v0.1.2
+
+## [v0.1.2](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.2) - 2026-09-07
+
+This archival and documentation patch adds a paper-inclusive release set:
+
+- `lonely-runner-15-prime-29-paper.pdf`;
+- `lonely-runner-15-prime-29-source.tar.gz`;
+- `lonely-runner-15-prime-29-certificate-v1.tar.gz`, containing the
+  unchanged selected certificate with refreshed replay README wording;
+- `SHA256SUMS`.
+
+The compiled PDF and deterministic source archive are intended for both the
+GitHub release and Zenodo record. The version DOI is
+`10.5281/zenodo.22647790`, and the stable concept DOI remains
+`10.5281/zenodo.22539841`.
+
+The theorem `J(14,29) = empty`, its proof, certificate, data, computations,
+solver outputs, CNF, DRAT proof, and claim boundary are unchanged from
+`v0.1.1`. This patch makes no new mathematical claim.
+
+Asset hashes:
+
+```text
+lonely-runner-15-prime-29-paper.pdf  b49620aa4c530b67fa95b94b114cd99d5b1f97969fecafc4567eab0c5cb93e9c
+lonely-runner-15-prime-29-source.tar.gz  e234baed75493fefce83600b01e0b2da758b4dfd2b6cfeff855d170a9bcb0cec
+lonely-runner-15-prime-29-certificate-v1.tar.gz  70bb4a809015e348cefdf7cb252f4aa929865af40fac665d78fb4016664dafcf
+SHA256SUMS  f60ba896a637dcd9b568fa5abaefee8c2e277b6c29ed6a99c4ee27b3ccc09bd1
+```
 
 ## [v0.1.1](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.1) - 2026-09-06
 

@@ -57,7 +57,7 @@ arXiv.org perpetual, non-exclusive license
 
 ## DOI
 
-Version DOI: 10.5281/zenodo.22541517
+Version DOI: 10.5281/zenodo.22647790
 
 Stable concept DOI: 10.5281/zenodo.22539841
 
@@ -82,4 +82,7 @@ uses no external bibliography, figures, or generated tables.
 
 The accompanying repository contains the selected certificate, exact source
 snapshots, two coprime implementations, the noncoprime CNF and DRAT proof,
-two checker logs, mutation tests, and complete replay commands.
+two checker logs, mutation tests, and complete replay commands. Release
+`v0.1.2` is an archival and documentation patch adding the compiled PDF and
+deterministic source bundle without changing the theorem, proof, certificate,
+data, or computations.

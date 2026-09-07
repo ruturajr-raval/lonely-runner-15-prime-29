@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "lonely-runner-15-prime-29",
-  "evaluated_at": "2026-09-06",
+  "evaluated_at": "2026-09-07",
   "candidate_claim": "The prime-29 eventual-improper set for fourteen moving runners is empty: J(14,29) = empty. This closes one finite-checking gate for fifteen total runners but does not prove LRC(14).",
   "gates": {
     "significant_original_result": true,
@@ -20,17 +20,25 @@
     "claim_scope_audited": true,
     "limitations_documented": true,
     "technical_report_ready": true,
-    "public_release_created": true,
-    "protected_release_tag": true,
+    "compiled_pdf_in_release_set": true,
+    "deterministic_source_bundle_ready": true,
+    "release_checksum_manifest_ready": true,
+    "paper_source_rebuild_matches_pdf": true,
+    "all_pdf_pages_reviewed": true,
+    "release_asset_hashes_verified": true,
+    "archival_patch_claim_scope_audited": true,
+    "public_release_created": false,
+    "protected_release_tag": false,
     "zenodo_version_doi_assigned": true,
-    "zenodo_archive_matches_tag": true,
+    "zenodo_record_updated_with_paper": false,
+    "zenodo_archive_matches_tag": false,
     "preprint_server_deposit_completed": false,
     "external_review_completed": false,
     "additional_prime_gate_closed": false,
     "finite_checking_threshold_reached": false
   },
-  "artifact_decision": "released",
+  "artifact_decision": "prepared",
   "technical_report_decision": "ready",
   "theorem_announcement_decision": "ready_for_scoped_result_announcement",
-  "reason": "The exact prime-29 theorem, dual coprime implementations, checked noncoprime DRAT proof, source-bound certificate, mutation tests, technical report, protected GitHub release, and byte-matched Zenodo archive pass. The full LRC(14) problem remains open, the required prime mass is far from complete, and no external mathematical review is claimed."
+  "reason": "The exact prime-29 theorem, dual coprime implementations, checked noncoprime DRAT proof, source-bound certificate, mutation tests, and technical report remain accepted. Version 0.1.2 is a paper-inclusive archival and documentation patch. Local PDF, source-bundle, checksum, commit, tag, hosted CI, GitHub release, and Zenodo upload gates must pass before publication. The full LRC(14) problem remains open, the required prime mass is far from complete, and no external mathematical review is claimed."
 }

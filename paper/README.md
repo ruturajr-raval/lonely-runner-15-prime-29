@@ -27,6 +27,18 @@ dist/paper/lonely-runner-15-prime-29-source.tar.gz
 dist/paper/lonely-runner-15-prime-29-paper.pdf
 ```
 
+The complete paper-inclusive release set is written under `dist/release/`.
+Verify it with:
+
+```bash
+make release-checksums
+make release-verify
+```
+
+Release `v0.1.2` adds the explicitly named PDF and deterministic source
+archive to the archival package. The theorem, proof, certificate, data, and
+computations are unchanged from `v0.1.1`.
+
 Replay the selected certificate with:
 
 ```bash

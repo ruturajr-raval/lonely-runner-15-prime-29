@@ -114,6 +114,18 @@ jobs:
           make paper-bundle
           cmp build/source-first.tar.gz \
             dist/paper/lonely-runner-15-prime-29-source.tar.gz
+      - name: Compile from release source bundle
+        run: |
+          mkdir -p build/source-replay build/source-replay-output
+          tar -xzf \
+            dist/release/lonely-runner-15-prime-29-source.tar.gz \
+            -C build/source-replay
+          cd build/source-replay
+          SOURCE_DATE_EPOCH=1788739200 \
+            ../tectonic/tectonic -X compile paper/main.tex \
+              --outdir ../source-replay-output --keep-logs
+          cmp ../source-replay-output/main.pdf \
+            ../../dist/release/lonely-runner-15-prime-29-paper.pdf
       - name: Check deterministic certificate bundle
         run: |
           cp \
@@ -134,6 +146,7 @@ jobs:
       - name: Check release checksums and formatting
         run: |
           make release-checksums
+          make release-verify
           git diff --check
       - name: Upload release workflow artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
@@ -212,24 +225,3 @@ jobs:
           cmp \
             dist/release/SHA256SUMS \
             build/release-download/SHA256SUMS
-      - name: Publish GitHub release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          live_commit="$(
-            gh api \
-              "repos/$GITHUB_REPOSITORY/commits/$GITHUB_REF_NAME" \
-              --jq .sha
-          )"
-          test "$live_commit" = "$(git rev-parse HEAD)"
-          gh release edit "$GITHUB_REF_NAME" \
-            --repo "$GITHUB_REPOSITORY" \
-            --draft=false \
-            --latest \
-            --verify-tag
-          test "$(
-            gh release view "$GITHUB_REF_NAME" \
-              --repo "$GITHUB_REPOSITORY" \
-              --json isDraft \
-              --jq .isDraft
-          )" = "false"

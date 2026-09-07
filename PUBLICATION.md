@@ -13,7 +13,7 @@
 | Release commit | Pending - no commit or tag was created while preparing this patch |
 | Version DOI | [`10.5281/zenodo.22647790`](https://doi.org/10.5281/zenodo.22647790) |
 | Concept DOI | [`10.5281/zenodo.22539841`](https://doi.org/10.5281/zenodo.22539841) |
-| Archive status | Local paper-inclusive release set prepared; GitHub and Zenodo publication pending |
+| Archive status | Paper-inclusive Zenodo successor draft uploaded and verified; GitHub and Zenodo publication pending |
 | License | MIT for project-original material |
 
 ## Background
@@ -125,8 +125,10 @@ Release assets:
 The prior `v0.1.1` archive remains available at version DOI
 `10.5281/zenodo.22541517`; its 110 files matched release commit
 `bfc58364d975a862153307766386b51fe8289e57` byte for byte. The new `v0.1.2`
-Zenodo draft `10.5281/zenodo.22647790` is reserved and has been inspected.
-No files have been uploaded and the draft has not been published.
+Zenodo draft `10.5281/zenodo.22647790` contains the compiled paper,
+deterministic source archive, certificate archive, and checksum manifest
+listed above. All four files were verified against the local release set.
+The draft has not been published.
 
 ## Provenance Boundary
 

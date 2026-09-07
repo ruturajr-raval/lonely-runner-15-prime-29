@@ -177,7 +177,6 @@ class ReleaseMetadataTests(unittest.TestCase):
                 text.replace(
                     VERSION_DOI,
                     "10.5281/zenodo.00000000",
-                    1,
                 ),
                 encoding="utf-8",
             )

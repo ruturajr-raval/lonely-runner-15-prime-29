@@ -9,7 +9,7 @@
 | Affiliation | Independent Researcher |
 | ORCID | [0000-0003-4930-8981](https://orcid.org/0000-0003-4930-8981) |
 | Tagged release | [`v0.1.2`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.2) |
-| Release date | 2026-09-07 |
+| Release date | 2026-09-08 |
 | Release commit | Pending - no commit or tag was created while preparing this patch |
 | Version DOI | [`10.5281/zenodo.22647790`](https://doi.org/10.5281/zenodo.22647790) |
 | Concept DOI | [`10.5281/zenodo.22539841`](https://doi.org/10.5281/zenodo.22539841) |

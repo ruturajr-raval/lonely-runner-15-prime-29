@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "project": "lonely-runner-15-prime-29",
-  "evaluated_at": "2026-09-07",
+  "evaluated_at": "2026-09-08",
   "candidate_claim": "The prime-29 eventual-improper set for fourteen moving runners is empty: J(14,29) = empty. This closes one finite-checking gate for fifteen total runners but does not prove LRC(14).",
   "gates": {
     "significant_original_result": true,

@@ -14,6 +14,11 @@ CHECKER = ROOT / "tools" / "check_release_metadata.py"
 VERSION = "0.1.2"
 TAG = f"v{VERSION}"
 VERSION_DOI = "10.5281/zenodo.22647790"
+RELEASE_COMMIT = "d968c40b55c885b66aca73861553cf5ffdd43bd3"
+ARCHIVE_NAME = "zenodo-record-22647790-files.zip"
+ARCHIVE_SHA256 = (
+    "292c64ce55fb8c432c862c621d992c7b203dc5eecb27df84cc541c3555e117e5"
+)
 UNKNOWN_DOI = "10.5281/zenodo.99999998"
 METADATA_FILES = (
     "CITATION.cff",
@@ -69,6 +74,31 @@ class ReleaseMetadataTests(unittest.TestCase):
             f"release metadata consistent for {TAG}",
             completed.stdout,
         )
+
+    def test_current_archival_record_is_published_and_complete(self) -> None:
+        record = json.loads(
+            (ROOT / ".release-record.json").read_text(encoding="utf-8")
+        )
+        self.assertEqual(record["status"], "published")
+        self.assertEqual(record["release_commit"], RELEASE_COMMIT)
+        self.assertEqual(
+            record["zenodo_archive"],
+            {
+                "filename": ARCHIVE_NAME,
+                "sha256": ARCHIVE_SHA256,
+                "file_count": 4,
+            },
+        )
+
+        publication = (ROOT / "PUBLICATION.md").read_text(encoding="utf-8")
+        for line in (
+            "- Release status: `published`",
+            f"- Release commit: `{RELEASE_COMMIT}`",
+            f"- Zenodo archive: `{ARCHIVE_NAME}`",
+            f"- Zenodo archive SHA-256: `{ARCHIVE_SHA256}`",
+            "- Archived file count: `4`",
+        ):
+            self.assertIn(line, publication)
 
     def test_wrong_tag_is_rejected(self) -> None:
         completed = self.run_checker(ROOT, "v0.1.0")

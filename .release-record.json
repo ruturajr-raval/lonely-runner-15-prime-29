@@ -1,13 +1,13 @@
 {
   "schema": 2,
-  "status": "prepared",
+  "status": "published",
   "release_scope": "paper_inclusive_archival_documentation_patch",
   "release_date": "2026-09-08",
   "version": "0.1.2",
   "tag": "v0.1.2",
   "version_doi": "10.5281/zenodo.22647790",
   "concept_doi": "10.5281/zenodo.22539841",
-  "release_commit": null,
+  "release_commit": "d968c40b55c885b66aca73861553cf5ffdd43bd3",
   "mathematical_claim_changed": false,
   "proof_certificate_data_or_computations_changed": false,
   "assets": {
@@ -17,9 +17,9 @@
     "SHA256SUMS": "f60ba896a637dcd9b568fa5abaefee8c2e277b6c29ed6a99c4ee27b3ccc09bd1"
   },
   "zenodo_archive": {
-    "filename": null,
-    "sha256": null,
-    "file_count": null
+    "filename": "zenodo-record-22647790-files.zip",
+    "sha256": "292c64ce55fb8c432c862c621d992c7b203dc5eecb27df84cc541c3555e117e5",
+    "file_count": 4
   },
   "verification": {
     "paper_build_passes": true,

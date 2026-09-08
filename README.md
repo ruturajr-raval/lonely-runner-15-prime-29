@@ -334,13 +334,20 @@ Release `v0.1.2` uses version DOI
 [10.5281/zenodo.22539841](https://doi.org/10.5281/zenodo.22539841) is the
 stable concept DOI for all versions.
 
+The audited release commit is
+`d968c40b55c885b66aca73861553cf5ffdd43bd3`. GitHub release `384395612`
+and the Zenodo record were downloaded after publication and checked against
+the four local release assets. Zenodo's generated four-file aggregate archive
+has SHA-256
+`292c64ce55fb8c432c862c621d992c7b203dc5eecb27df84cc541c3555e117e5`.
+
 The prior `v0.1.1` archive remains the historical scope-correction release.
 Version `v0.1.2` changes archival packaging and documentation only.
 
 GitHub and Zenodo are the current dissemination baseline. No preprint-server
-deposit or external peer review is claimed. The machine-readable files under
-`research/` were added after the protected release. They summarize the
-released claim but are not part of the immutable 110-file `v0.1.1` archive.
+deposit or external peer review is claimed. The post-publication revisions to
+the machine-readable files under `research/` summarize the released claim but
+are not part of the immutable `v0.1.2` tag.
 
 Citation metadata is in [`CITATION.cff`](CITATION.cff), release history is in
 [`RELEASE_NOTES.md`](RELEASE_NOTES.md), and the complete release record is in

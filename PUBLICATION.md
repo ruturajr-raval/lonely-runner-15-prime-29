@@ -10,10 +10,11 @@
 | ORCID | [0000-0003-4930-8981](https://orcid.org/0000-0003-4930-8981) |
 | Tagged release | [`v0.1.2`](https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.2) |
 | Release date | 2026-09-08 |
-| Release commit | Pending - no commit or tag was created while preparing this patch |
+| Audited release commit | `d968c40b55c885b66aca73861553cf5ffdd43bd3` |
+| GitHub release ID | `384395612` |
 | Version DOI | [`10.5281/zenodo.22647790`](https://doi.org/10.5281/zenodo.22647790) |
 | Concept DOI | [`10.5281/zenodo.22539841`](https://doi.org/10.5281/zenodo.22539841) |
-| Archive status | Paper-inclusive Zenodo successor draft uploaded and verified; GitHub and Zenodo publication pending |
+| Archive status | GitHub release and paper-inclusive Zenodo record published, downloaded, and byte-verified |
 | License | MIT for project-original material |
 
 ## Background
@@ -107,11 +108,14 @@ the release directory is closed and that every asset matches
 - Release identity:
   `https://github.com/ruturajr-raval/lonely-runner-15-prime-29/releases/tag/v0.1.2`
 - Version DOI: `10.5281/zenodo.22647790`
-- Release status: `prepared`
+- Release status: `published`
 - Stable concept DOI: `10.5281/zenodo.22539841`
-- Release commit: `pending`
-- Tagged CI stages and verifies a draft GitHub release. Publication remains
-  an explicit post-verification action.
+- Release commit: `d968c40b55c885b66aca73861553cf5ffdd43bd3`
+- GitHub release ID: `384395612`
+- Protected annotated tag object:
+  `139b4785e38ca4933a753f78563bfbf70298db90`
+- Tagged CI rebuilt and verified the release assets, staged the draft release,
+  and replayed the complete proof chain before publication.
 
 Release assets:
 
@@ -120,15 +124,19 @@ Release assets:
 - `lonely-runner-15-prime-29-certificate-v1.tar.gz`: `70bb4a809015e348cefdf7cb252f4aa929865af40fac665d78fb4016664dafcf`
 - `SHA256SUMS`: `f60ba896a637dcd9b568fa5abaefee8c2e277b6c29ed6a99c4ee27b3ccc09bd1`
 
-- Zenodo archive: `pending`
+- Zenodo archive: `zenodo-record-22647790-files.zip`
+- Zenodo archive SHA-256: `292c64ce55fb8c432c862c621d992c7b203dc5eecb27df84cc541c3555e117e5`
+- Archived file count: `4`
 
 The prior `v0.1.1` archive remains available at version DOI
 `10.5281/zenodo.22541517`; its 110 files matched release commit
 `bfc58364d975a862153307766386b51fe8289e57` byte for byte. The new `v0.1.2`
-Zenodo draft `10.5281/zenodo.22647790` contains the compiled paper,
+Zenodo record `10.5281/zenodo.22647790` contains the compiled paper,
 deterministic source archive, certificate archive, and checksum manifest
-listed above. All four files were verified against the local release set.
-The draft has not been published.
+listed above. Each public GitHub and Zenodo file was downloaded and verified
+byte for byte against the local release set. The Zenodo aggregate archive was
+downloaded twice with identical bytes, extracted, and independently checked
+to contain exactly the same four files.
 
 ## Provenance Boundary
 
@@ -142,8 +150,8 @@ revisions are bound in the certificate provenance.
 
 The mathematical release passed theorem-scope, exact-solver, CNF, dual
 proof-checker, source-binding, mutation, manuscript, and release-metadata
-review. The `v0.1.2` local paper and release assets are verified separately
-before publication. No external mathematical or peer review is claimed.
+review. The `v0.1.2` paper and release assets were verified separately before
+publication. No external mathematical or peer review is claimed.
 
 ## What Is Not Claimed
 
